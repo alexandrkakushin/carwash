@@ -69,6 +69,13 @@ export abstract class AbstractCatalogComponent implements CatalogOperation, OnIn
     this.displayDialog = false;
   }
 
+  refresh(): void {
+    let result = this.repository.refresh();
+    if (!result) {
+      this.msgs.push({severity: 'error', summary: this.name, detail: 'Ошибка при получении данных'});
+    }
+  }
+
 
   isCity(): boolean {
     return this.repository instanceof CitiesRepository;
@@ -133,9 +140,9 @@ export abstract class AbstractCatalogComponent implements CatalogOperation, OnIn
     this.msgs.push({severity: severity, summary: this.name, detail: element.name});
   };
 
-  remove(element: any): void {
-    this.repository.remove(element);
-    this.selected = null;
+  remove(): void {
+    this.repository.remove(this.selected);
+//    this.selected = null;
   };
 
 }

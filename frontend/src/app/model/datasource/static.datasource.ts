@@ -161,4 +161,23 @@ export class StaticDataSource {
   }
 
 
+
+
+  items(repository: string): Observable<any[]> {
+    let result = null;
+    return result;
+  }
+
+  deleteElement(element: any, repository: string): boolean {
+    return true;
+  }
+
+  addElement(element: any, repository: string): number {
+    return 0;
+  }
+
+  editElement(element: any, repository: string): boolean {
+    return true;
+  }
+
 }

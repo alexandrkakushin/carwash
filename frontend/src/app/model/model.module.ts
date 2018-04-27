@@ -13,6 +13,7 @@ import {StagesRepository} from "./repository/stages.repository";
 import {SectionsRepository} from "./repository/sections.repository";
 import {BuildingsRepository} from "./repository/buildings.repository";
 import {TargetsRepository} from "./repository/targets.repository";
+import {RestDataSource} from "./datasource/rest.datasouce";
 
 @NgModule({
   imports: [HttpModule],
@@ -28,7 +29,7 @@ import {TargetsRepository} from "./repository/targets.repository";
     ServicesRepository,
     MechanismsRepository,
     MaterialsRepository,
-    StaticDataSource
+    { provide: StaticDataSource, useClass: RestDataSource }
   ]
 })
 
