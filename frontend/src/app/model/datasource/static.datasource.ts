@@ -11,6 +11,11 @@ import {Stage} from "../stage.model";
 import {Section} from "../section.model";
 import {Building} from "../building.model";
 import {Target} from "../target.model";
+import {UnitsMeasureRepository} from "../repository/unitsMeasure.repository";
+import {CitiesRepository} from "../repository/cities.repository";
+import {MaterialsRepository} from "../repository/materials.repository";
+import {ServicesRepository} from "../repository/services.repository";
+import {MechanismsRepository} from "../repository/mechanisms.repository";
 
 @Injectable()
 export class StaticDataSource {
@@ -52,22 +57,22 @@ export class StaticDataSource {
   ];
 
   private materials: Nomenclature[] = [
-    new Nomenclature(1, "100500", "Щебень гранитный 20/40", this.unitsMeasure[1], 250, "no comment"),
-    new Nomenclature(2, "100501", "Конус полимерпесчаный", this.unitsMeasure[2], 150),
-    new Nomenclature(3, "100502", "Битумно-каучуковая мастика", this.unitsMeasure[3], 400),
-    new Nomenclature(4, "100503", "Доска обрезная 25х150х6000", this.unitsMeasure[1], 550)
+    new Nomenclature(1, "100500", "Щебень гранитный 20/40", null, "MATERIAL", this.unitsMeasure[1], 250),
+    new Nomenclature(2, "100501", "Конус полимерпесчаный", null, "MATERIAL", this.unitsMeasure[2], 150),
+    new Nomenclature(3, "100502", "Битумно-каучуковая мастика", null, "MATERIAL", this.unitsMeasure[3], 400),
+    new Nomenclature(4, "100503", "Доска обрезная 25х150х6000", null, "MATERIAL", this.unitsMeasure[1], 550)
   ];
 
   private services: Nomenclature[] = [
-    new Nomenclature(1, "200500", "Устройство основания песчаного", this.unitsMeasure[1], 250, "Особое внимание к основанию"),
-    new Nomenclature(2, "200501", "Затирка поверхности бетона УШМ с упрочнением топпингом", this.unitsMeasure[0], 150),
-    new Nomenclature(3, "200502", "Монтаж профлиста на вспомогательное помещение для флотатора", this.unitsMeasure[0], 400)
+    // new Nomenclature(1, "200500", "Устройство основания песчаного", this.unitsMeasure[1], 250, "Особое внимание к основанию"),
+    // new Nomenclature(2, "200501", "Затирка поверхности бетона УШМ с упрочнением топпингом", this.unitsMeasure[0], 150),
+    // new Nomenclature(3, "200502", "Монтаж профлиста на вспомогательное помещение для флотатора", this.unitsMeasure[0], 400)
   ];
 
   private mechanisms: Nomenclature[] = [
-    new Nomenclature(1, "300500", "Монтаж сборных железобетонных плит", this.unitsMeasure[4], 250),
-    new Nomenclature(2, "300501", "Монтаж элементов железобетонных колодцев 1,5м", this.unitsMeasure[2], 150),
-    new Nomenclature(3, "300502", "Монтаж профнастила Н75-750-0,8", this.unitsMeasure[5], 400, "Примечание №123")
+    // new Nomenclature(1, "300500", "Монтаж сборных железобетонных плит", this.unitsMeasure[4], 250),
+    // new Nomenclature(2, "300501", "Монтаж элементов железобетонных колодцев 1,5м", this.unitsMeasure[2], 150),
+    // new Nomenclature(3, "300502", "Монтаж профнастила Н75-750-0,8", this.unitsMeasure[5], 400, "Примечание №123")
   ];
 
   private contractors: Contractor[] = [
@@ -164,20 +169,35 @@ export class StaticDataSource {
 
 
   items(repository: string): Observable<any[]> {
-    let result = null;
-    return result;
+
+    if (repository == 'UnitsMeasureRepository') {
+      return Observable.from([this.unitsMeasure]);
+
+    } else if (repository == 'CitiesRepository') {
+      return Observable.from([this.cities]);
+
+    } else if (repository == 'MaterialsRepository') {
+      return Observable.from([this.materials]);
+
+    } else if (repository == 'ServicesRepository') {
+      return Observable.from([this.services]);
+
+    } else if (repository == 'MechanismsRepository') {
+      return Observable.from([this.mechanisms]);
+
+    }
   }
 
-  deleteElement(element: any, repository: string): boolean {
-    return true;
+  deleteElement(element: any, repository: string): Observable<any> {
+    return null;
   }
 
-  addElement(element: any, repository: string): number {
-    return 0;
+  addElement(element: any, repository: string): Observable<any> {
+    return null;
   }
 
-  editElement(element: any, repository: string): boolean {
-    return true;
+  editElement(element: any, repository: string): Observable<any> {
+    return null;
   }
 
 }

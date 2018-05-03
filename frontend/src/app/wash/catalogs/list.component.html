@@ -170,8 +170,8 @@
     </div>
   </div>
 
-  <!--// Города, Единицы измерения-->
-  <div class="ui-g ui-fluid" *ngIf="changed != null && (isCity() || isUnit())">
+  <!--// Города, Единицы измерения, Группы контрагентов-->
+  <div class="ui-g ui-fluid" *ngIf="changed != null && (isCity() || isUnit() || isGroupContractor())">
 
     <div class="ui-g-12">
       <div class="ui-g-4">
@@ -337,7 +337,7 @@
 
     <div class="ui-g-12">
       <div class="ui-g-4">
-        <label for="price">Количество постов</label>
+        <label for="target_point">Количество постов</label>
       </div>
       <div class="ui-g-8">
         <div class="ui-inputgroup">

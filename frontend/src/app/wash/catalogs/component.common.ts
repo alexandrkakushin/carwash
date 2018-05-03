@@ -12,17 +12,19 @@ import {StagesRepository} from "../../model/repository/stages.repository";
 import {SectionsRepository} from "../../model/repository/sections.repository";
 import {BuildingsRepository} from "../../model/repository/buildings.repository";
 import {TargetsRepository} from "../../model/repository/targets.repository";
+import {CatalogCommon} from "../../model/catalog.model";
+import {GroupsContractorRepository} from "../../model/repository/groupsContractor.repository";
 
-export abstract class AbstractCatalogComponent implements CatalogOperation, OnInit {
+export abstract class CatalogComponentCommon implements CatalogOperation, OnInit {
 
   name: string;
   cols: any[];
-  selected: any = {name: ""};
-  changed: any = {name: ""};
-
-  displayDialog: boolean;
+  selected: CatalogCommon = new CatalogCommon();
+  changed: CatalogCommon = new CatalogCommon();
 
   msgs: Message[] = [];
+
+  displayDialog: boolean;
 
   constructor(private repository, name: string) {
     this.setName(name);
@@ -40,16 +42,25 @@ export abstract class AbstractCatalogComponent implements CatalogOperation, OnIn
     return [];
   }
 
+  subscribeMessages(): void {
+    this.repository.getMessages().subscribe(
+      data => {
+        this.msgs = data;
+      }
+    );
+  }
+
+
   // add/edit/remove view
 
   addElement(): void {
     this.showDialog();
-    this.changed = {};
+    this.changed = this.repository.createElement();
   }
 
   editElement(): void {
     this.showDialog();
-    this.changed = { ... this.selected};
+    this.changed = this.selected.clone();
   }
 
   saveChanges(): void {
@@ -63,17 +74,11 @@ export abstract class AbstractCatalogComponent implements CatalogOperation, OnIn
 
   private showDialog(): void {
     this.displayDialog = true;
+    console.log(this.selected);
   }
 
   hideDialog(): void {
     this.displayDialog = false;
-  }
-
-  refresh(): void {
-    let result = this.repository.refresh();
-    if (!result) {
-      this.msgs.push({severity: 'error', summary: this.name, detail: 'Ошибка при получении данных'});
-    }
   }
 
 
@@ -111,38 +116,33 @@ export abstract class AbstractCatalogComponent implements CatalogOperation, OnIn
     return this.repository instanceof TargetsRepository;
   }
 
+  isGroupContractor(): boolean {
+    return this.repository instanceof GroupsContractorRepository;
+  }
+
 
   // operation with repository
 
-  items(): any[] {
+  refresh(): void {
+    this.repository.refresh();
+  }
+
+  items(): CatalogCommon[] {
     return this.repository.items();
   };
 
-  add(element: any): void {
-    let result = this.repository.add(element);
-    this.msgs = [];
-
-    let severity = 'success';
-    if (!result) {
-      severity = 'error';
-    }
-    this.msgs.push({severity: severity, summary: this.name, detail: element.name});
+  add(element: CatalogCommon): void {
+    this.repository.add(element);
+    this.subscribeMessages();
   };
 
-  edit(element: any): void {
-    let result = this.repository.edit(element);
-    this.msgs = [];
-    let severity = 'error';
-    if (result) {
-      severity = 'success';
-      this.selected = element;
-    }
-    this.msgs.push({severity: severity, summary: this.name, detail: element.name});
+  edit(element: CatalogCommon): void {
+    this.repository.edit(element);
+    this.subscribeMessages();
   };
 
   remove(): void {
     this.repository.remove(this.selected);
-//    this.selected = null;
+    this.subscribeMessages();
   };
-
 }

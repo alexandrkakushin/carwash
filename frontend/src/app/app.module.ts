@@ -17,6 +17,8 @@ import {StagesCatalogComponent} from "./wash/catalogs/stages/stages.component";
 import {SectionsCatalogComponent} from "./wash/catalogs/sections/sections.component";
 import {BuildingsCatalogComponent} from "./wash/catalogs/buildings/buildings.component";
 import {TargetsCatalogComponent} from "./wash/catalogs/targets/targets.component";
+import {UnitsMeasureRepository} from "./model/repository/unitsMeasure.repository";
+import {GroupsContractorCatalogComponent} from "./wash/catalogs/groupsContractor/groupContractor.component";
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import {TargetsCatalogComponent} from "./wash/catalogs/targets/targets.component
       { path: "carwash/catalogs/sections", component: SectionsCatalogComponent },
       { path: "carwash/catalogs/buildings", component: BuildingsCatalogComponent },
       { path: "carwash/catalogs/targets", component: TargetsCatalogComponent },
+      { path: "carwash/catalogs/groupscontractor", component: GroupsContractorCatalogComponent },
 
       { path: "carwash/prices", component: PricesComponent},
 

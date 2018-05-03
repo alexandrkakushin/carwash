@@ -12,17 +12,17 @@ import {ContractorsRepository} from "../../model/repository/contractors.reposito
 
 export class PricesComponent implements OnInit {
 
-  idContractor: number;
-
-  constructor(private activitedRoute: ActivatedRoute,
-              private contractorsRepository: ContractorsRepository) {
-  }
-
+  // idContractor: number;
+  //
+  // constructor(private activitedRoute: ActivatedRoute,
+  //             private contractorsRepository: ContractorsRepository) {
+  // }
+  //
   ngOnInit(): void {
-    this.idContractor = this.activitedRoute.snapshot.queryParams['id'];
+    // this.idContractor = this.activitedRoute.snapshot.queryParams['id'];
   }
-
-  get contractors(): Contractor[] {
-    return this.contractorsRepository.items();
-  }
+  //
+  // get contractors(): Contractor[] {
+  //   return this.contractorsRepository.items();
+  // }
 }

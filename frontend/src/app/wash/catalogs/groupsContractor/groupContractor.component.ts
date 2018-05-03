@@ -1,7 +1,8 @@
 
 import {Component} from "@angular/core";
+import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {CatalogComponentCommon} from "../component.common";
-import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
+import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
 
 @Component({
   selector: "catalog-groupscontractor",
@@ -9,10 +10,10 @@ import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.rep
   templateUrl: "../list.component.html"
 })
 
-export class UnitsCatalogComponent extends CatalogComponentCommon {
+export class GroupsContractorCatalogComponent extends CatalogComponentCommon {
 
-  constructor(repository: UnitsMeasureRepository) {
-    super(repository, "Единицы измерения");
+  constructor(repository: GroupsContractorRepository) {
+    super(repository, "Группы контрагентов");
   }
 
   columns(): any {

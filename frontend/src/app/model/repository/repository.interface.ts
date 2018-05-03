@@ -1,12 +1,16 @@
+import {Observable} from "rxjs/Observable";
+import {CatalogCommon} from "../catalog.model";
 
 export interface Repository {
 
-  items(): any[];
+  refresh(): void;
 
-  remove(element: any): boolean;
+  items(): CatalogCommon[];
 
-  add(element: any): boolean;
+  remove(element: CatalogCommon): void;
 
-  edit(element: any): boolean;
+  add(element: CatalogCommon): void;
+
+  edit(element: CatalogCommon): void;
 
 }

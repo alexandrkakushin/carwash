@@ -1,12 +1,18 @@
 
-export class UnitMeasure {
-  constructor(
-    public id: number,
-    public name: string,
-    public comment?: string
-  ) {}
+import {CatalogCommon} from "./catalog.model";
 
-  toString() {
-    return this.name;
+export class UnitMeasure extends CatalogCommon {
+
+  constructor(
+    public id?: number,
+    public name?: string,
+    public comment?: string
+  ) {
+    super(id, name, comment);
+  }
+
+  clone(): this {
+    return new
+      (this.constructor as typeof UnitMeasure)(this.id, this.name, this.comment) as this;
   }
 }

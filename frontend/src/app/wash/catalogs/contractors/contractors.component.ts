@@ -2,7 +2,7 @@
 import {Component} from "@angular/core";
 import {ContractorsRepository} from "../../../model/repository/contractors.repository";
 import {Contractor} from "../../../model/contractor.model";
-import {AbstractCatalogComponent} from "../catalog.abstract";
+import {CatalogComponentCommon} from "../component.common";
 import {SelectItem} from 'primeng/api';
 import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
@@ -15,7 +15,7 @@ import {visitValue} from "@angular/compiler/src/util";
   templateUrl: "../list.component.html"
 })
 
-export class ContractorsCatalogComponent extends AbstractCatalogComponent {
+export class ContractorsCatalogComponent extends CatalogComponentCommon {
 
   groups: SelectItem[];
   cities: SelectItem[];

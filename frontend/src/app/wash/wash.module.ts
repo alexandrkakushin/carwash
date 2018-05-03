@@ -34,6 +34,7 @@ import {SectionsCatalogComponent} from "./catalogs/sections/sections.component";
 import {ListboxModule} from 'primeng/listbox';
 import {BuildingsCatalogComponent} from "./catalogs/buildings/buildings.component";
 import {TargetsCatalogComponent} from "./catalogs/targets/targets.component";
+import {GroupsContractorCatalogComponent} from "./catalogs/groupsContractor/groupContractor.component";
 
 @NgModule({
   imports: [
@@ -69,10 +70,14 @@ import {TargetsCatalogComponent} from "./catalogs/targets/targets.component";
       StagesCatalogComponent,
       SectionsCatalogComponent,
       BuildingsCatalogComponent,
-      TargetsCatalogComponent
+      TargetsCatalogComponent,
+      GroupsContractorCatalogComponent
   ],
-  exports: [WashComponent]
+  exports: [WashComponent],
+  providers: []
 })
 
-export class WashModule {}
+export class WashModule {
+
+}
 

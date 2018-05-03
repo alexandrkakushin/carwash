@@ -2,7 +2,7 @@
 import {Component} from "@angular/core";
 import {ServicesRepository} from "../../../model/repository/services.repository";
 import {Nomenclature} from "../../../model/nomenclature.model";
-import { AbstractCatalogComponent } from "../catalog.abstract";
+import { CatalogComponentCommon } from "../component.common";
 import {SelectItem} from "primeng/api";
 import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
 
@@ -12,7 +12,7 @@ import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.rep
   templateUrl: "../list.component.html"
 })
 
-export class ServicesCatalogComponent extends AbstractCatalogComponent {
+export class ServicesCatalogComponent extends CatalogComponentCommon {
 
   units: SelectItem[];
 

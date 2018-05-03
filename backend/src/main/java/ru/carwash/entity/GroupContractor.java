@@ -10,32 +10,28 @@ import java.util.Set;
  * @author a.kakushin
  */
 @Entity
-@Table(name = "UNITS")
-public class Unit implements Catalog {
+@Table(name = "GROUPS_CONTRACTORS")
+public class GroupContractor implements Catalog {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     private String name;
     private String comment;
 
-    @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Nomenclature> nomenclatures = new HashSet<Nomenclature>();
+    private Set<Contractor> contractors = new HashSet<Contractor>();
 
-    public Unit() {
+
+    public GroupContractor() {
     }
 
-    public Unit(String name) {
+    public GroupContractor(String name) {
         this.name = name;
     }
 
-    public Unit(String name, String comment) {
-        this.name = name;
-        this.comment = comment;
-    }
 
     public Long getId() {
         return id;
@@ -61,11 +57,11 @@ public class Unit implements Catalog {
         this.comment = comment;
     }
 
-    public Set<Nomenclature> getNomenclatures() {
-        return nomenclatures;
+    public Set<Contractor> getContractors() {
+        return contractors;
     }
 
-    public void setNomenclatures(Set<Nomenclature> nomenclatures) {
-        this.nomenclatures = nomenclatures;
+    public void setContractors(Set<Contractor> contractors) {
+        this.contractors = contractors;
     }
 }

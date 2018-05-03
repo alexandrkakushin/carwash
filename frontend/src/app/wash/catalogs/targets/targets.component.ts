@@ -1,6 +1,6 @@
 
 import {Component} from "@angular/core";
-import {AbstractCatalogComponent} from "../catalog.abstract";
+import {CatalogComponentCommon} from "../component.common";
 import {TargetsRepository} from "../../../model/repository/targets.repository";
 import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {BuildingsRepository} from "../../../model/repository/buildings.repository";
@@ -12,7 +12,7 @@ import {SelectItem} from "primeng/api";
   templateUrl: "../list.component.html"
 })
 
-export class TargetsCatalogComponent extends AbstractCatalogComponent {
+export class TargetsCatalogComponent extends CatalogComponentCommon {
 
   cities: SelectItem[];
   buildings: SelectItem[];

@@ -10,31 +10,36 @@ import java.util.Set;
  * @author a.kakushin
  */
 @Entity
-@Table(name = "UNITS")
-public class Unit implements Catalog {
+@Table(name = "BUILDINGS")
+public class Building implements Catalog {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     private String name;
     private String comment;
 
-    @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Nomenclature> nomenclatures = new HashSet<Nomenclature>();
+    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
+    private Set<Target> targets = new HashSet<>();
 
-    public Unit() {
+    @ManyToMany
+    @JoinTable(name = "BUILDING_SECTIONS",
+            joinColumns = @JoinColumn(name = "building_id"),
+            inverseJoinColumns = @JoinColumn(name = "section_id"))
+    private Set<Section> sections = new HashSet<>();
+
+
+    public Building() {
     }
 
-    public Unit(String name) {
+    public Building(String name) {
         this.name = name;
     }
 
-    public Unit(String name, String comment) {
-        this.name = name;
-        this.comment = comment;
+    public void addSection(Section section) {
+        this.sections.add(section);
     }
 
     public Long getId() {
@@ -61,11 +66,11 @@ public class Unit implements Catalog {
         this.comment = comment;
     }
 
-    public Set<Nomenclature> getNomenclatures() {
-        return nomenclatures;
+    public Set<Section> getSections() {
+        return sections;
     }
 
-    public void setNomenclatures(Set<Nomenclature> nomenclatures) {
-        this.nomenclatures = nomenclatures;
+    public void setSections(Set<Section> sections) {
+        this.sections = sections;
     }
 }

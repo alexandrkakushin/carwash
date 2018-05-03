@@ -1,15 +1,17 @@
 
 import {Component} from "@angular/core";
 import {CitiesRepository} from "../../../model/repository/cities.repository";
-import {AbstractCatalogComponent} from "../catalog.abstract";
+import {CatalogComponentCommon} from "../component.common";
+import {MessageService} from "primeng/components/common/messageservice";
 
 @Component({
   selector: "catalog-cities",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../list.component.html",
+  providers: [MessageService]
 })
 
-export class CitiesCatalogComponent extends AbstractCatalogComponent {
+export class CitiesCatalogComponent extends CatalogComponentCommon {
 
   constructor(repository: CitiesRepository) {
     super(repository, "Города");

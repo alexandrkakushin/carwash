@@ -1,8 +1,7 @@
 
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {MaterialsRepository} from "../../../model/repository/materials.repository";
-import {Nomenclature} from "../../../model/nomenclature.model";
-import { AbstractCatalogComponent } from "../catalog.abstract";
+import { CatalogComponentCommon } from "../component.common";
 import {SelectItem} from "primeng/api";
 import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
 
@@ -12,14 +11,13 @@ import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.rep
   templateUrl: "../list.component.html"
 })
 
-export class MaterialsCatalogComponent extends AbstractCatalogComponent {
+export class MaterialsCatalogComponent extends CatalogComponentCommon {
 
   units: SelectItem[];
 
   constructor(repository: MaterialsRepository,
               private repositoryUnits: UnitsMeasureRepository) {
     super(repository, "Материалы");
-
     this.units = this.repositoryUnits.items().map(
       (item, index) => ( {label: item.name, value: item} )
     );

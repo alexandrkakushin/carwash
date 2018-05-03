@@ -1,11 +1,11 @@
 package ru.carwash.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author a.kakushin
@@ -15,11 +15,19 @@ import javax.persistence.Table;
 public class City implements Catalog {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
     private String comment;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
+    private Set<Contractor> contractors = new HashSet<Contractor>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
+    private Set<Target> targets = new HashSet<>();
 
     public City() {}
 
@@ -54,5 +62,21 @@ public class City implements Catalog {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Set<Contractor> getContractors() {
+        return contractors;
+    }
+
+    public void setContractors(Set<Contractor> contractors) {
+        this.contractors = contractors;
+    }
+
+    public Set<Target> getTargets() {
+        return targets;
+    }
+
+    public void setTargets(Set<Target> targets) {
+        this.targets = targets;
     }
 }

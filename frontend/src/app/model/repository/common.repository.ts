@@ -2,104 +2,100 @@
 import {Repository} from "./repository.interface";
 import {StaticDataSource} from "../datasource/static.datasource";
 import {Observable} from "rxjs/Observable";
-import {StagesRepository} from "./stages.repository";
+import "rxjs/add/observable/from";
+import {CatalogCommon} from "../catalog.model";
+import {Message} from "primeng/api";
 
 export class CommonRepository implements Repository {
 
-  private _items: any[] = [];
-  private maxId: number = 0;
+  private _items: CatalogCommon[] = [];
   private nameRepository: string;
+
+  private msgs: Message[] = [];
 
   constructor(private dataSource: StaticDataSource, repository) {
     this.nameRepository = repository;
-
     this.refresh();
   }
 
-  refresh(): boolean {
+  init() {}
 
-    let items: Observable<any[]>;
+  getDataSource(): StaticDataSource {
+    return this.dataSource;
+  }
 
-    if (this.nameRepository == 'StagesRepository') {
-      items = this.dataSource.getStages();
-
-    } else if (this.nameRepository == 'CitiesRepository') {
-      items = this.dataSource.items(this.nameRepository);
-
-    } else if (this.nameRepository == 'ContractorsRepository') {
-      items = this.dataSource.getContractors();
-
-    } else if (this.nameRepository == 'GroupsContractorRepository') {
-      items = this.dataSource.getGroupsContractor();
-
-    } else if (this.nameRepository == 'MaterialsRepository') {
-      items = this.dataSource.getMaterials();
-
-    } else if (this.nameRepository == 'MechanismsRepository') {
-      items = this.dataSource.getMechanisms();
-
-    } else if (this.nameRepository == 'SectionsRepository') {
-      items = this.dataSource.getSections();
-
-    } else if (this.nameRepository == 'ServicesRepository') {
-      items = this.dataSource.getServices();
-
-    } else if (this.nameRepository == 'StagesRepository') {
-      items = this.dataSource.getStages();
-
-    } else if (this.nameRepository == 'UnitsMeasureRepository') {
-      items = this.dataSource.items(this.nameRepository);
-
-    } else if (this.nameRepository == 'TargetsRepository') {
-      items = this.dataSource.getTargets();
-
-    } else if (this.nameRepository == 'BuildingsRepository') {
-      items = this.dataSource.getBuildings();
-    }
-
-    items.subscribe(
-      data => {
-        this._items = data;
-        // todo: получать максимальный индекс
-        this.maxId = this._items.length;
-      }
-    )
-
-    return true;
+  getMessages(): Observable<Message[]> {
+    return Observable.from([this.msgs]);
   }
 
 
-  items(): any[] {
+  createElement(): CatalogCommon {
+    return new CatalogCommon();
+  }
+
+  findByElement(element: CatalogCommon) {
+    if (element == null) {
+      return null;
+    }
+    return this._items.find(line => line.id == element.id);
+  }
+
+
+  // CRUD
+
+  refresh(): void {
+    this._items.splice(0, this._items.length);
+    this.init();
+  }
+
+  items(): CatalogCommon[] {
     return this._items;
   }
 
-  remove(element: any): boolean {
-
-    this.dataSource.deleteElement(element, this.nameRepository);
-
-    let index = this._items.findIndex(line => line.id == element.id);
-    this._items.splice(index, 1);
-
-    return true;
+  remove(element: CatalogCommon): void {
+    let response = this.dataSource.deleteElement(element, this.nameRepository);
+    this.msgs = [];
+    response.subscribe(
+        value => {
+          this.msgs.push({severity: 'success', summary: "Удаление", detail: element.name});
+          let index = this._items.findIndex(line => line.id == element.id);
+          this._items.splice(index, 1);
+        }, error => {
+          this.msgs.push({severity: 'error', summary: "Удаление", detail: element.name});
+        }
+      );
   }
 
-  add(element: any): boolean {
-    this.dataSource.addElement(element, this.nameRepository);
-
-    this.refresh();
-    // this.maxId++;
-    // element.id = this.maxId;
-    // this._items.push(element);
-    return true;
+  add(element: CatalogCommon): void {
+    let response = this.dataSource.addElement(element, this.nameRepository);
+    this.msgs = [];
+    response.subscribe(
+        value => {
+          if (value != null) {
+            element.id = value.id;
+            this._items.push(element);
+            this.msgs.push({severity: 'success', summary: "Создание", detail: element.name});
+          } else {
+            this.msgs.push({severity: 'error', summary: "Создание", detail: element.name});
+          }
+        }, error => {
+          this.msgs.push({severity: 'error', summary: "Создание", detail: element.name});
+        }
+      );
   }
 
-  edit(element: any): boolean {
-    let result = this.dataSource.editElement(element, this.nameRepository);
-    if (result) {
-      let index = this._items.findIndex(line => line.id == element.id);
-      this._items[index] = element;
-    }
-
-    return result;
+  edit(element: CatalogCommon): void {
+    let response = this.dataSource.editElement(element, this.nameRepository);
+    this.msgs = [];
+    response.subscribe(
+        value => {
+          this.msgs.push({severity: 'success', summary: "Изменение", detail: element.name});
+          let index = this._items.findIndex(line => line.id == element.id);
+          Object.assign(this._items[index], element);
+        }, error => {
+          this.msgs.push({severity: 'error', summary: "Изменение", detail: element.name});
+        }
+      );
   }
+
 }

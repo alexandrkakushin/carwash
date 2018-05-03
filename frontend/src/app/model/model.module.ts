@@ -1,6 +1,5 @@
 
 import { NgModule } from "@angular/core";
-import { HttpModule } from "@angular/http";
 import {StaticDataSource} from "./datasource/static.datasource";
 import {MaterialsRepository} from "./repository/materials.repository";
 import {ServicesRepository} from "./repository/services.repository";
@@ -14,9 +13,10 @@ import {SectionsRepository} from "./repository/sections.repository";
 import {BuildingsRepository} from "./repository/buildings.repository";
 import {TargetsRepository} from "./repository/targets.repository";
 import {RestDataSource} from "./datasource/rest.datasouce";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
-  imports: [HttpModule],
+  imports: [HttpClientModule],
   providers: [
     TargetsRepository,
     BuildingsRepository,
@@ -29,6 +29,7 @@ import {RestDataSource} from "./datasource/rest.datasouce";
     ServicesRepository,
     MechanismsRepository,
     MaterialsRepository,
+    //StaticDataSource
     { provide: StaticDataSource, useClass: RestDataSource }
   ]
 })

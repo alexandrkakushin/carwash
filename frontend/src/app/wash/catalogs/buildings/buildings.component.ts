@@ -1,6 +1,6 @@
 
 import {Component} from "@angular/core";
-import {AbstractCatalogComponent} from "../catalog.abstract";
+import {CatalogComponentCommon} from "../component.common";
 import {BuildingsRepository} from "../../../model/repository/buildings.repository";
 import {SelectItem} from "primeng/api";
 import {SectionsRepository} from "../../../model/repository/sections.repository";
@@ -11,7 +11,7 @@ import {SectionsRepository} from "../../../model/repository/sections.repository"
   templateUrl: "../list.component.html"
 })
 
-export class BuildingsCatalogComponent extends AbstractCatalogComponent {
+export class BuildingsCatalogComponent extends CatalogComponentCommon {
 
   sections: SelectItem[];
 
