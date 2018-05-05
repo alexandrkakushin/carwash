@@ -8,11 +8,11 @@ import {GroupContractor} from "../groupContractor.model";
 export class GroupsContractorRepository extends CommonRepository {
 
   constructor(dataSource: StaticDataSource) {
-    super(dataSource, GroupsContractorRepository.name);
+    super(dataSource, "GroupsContractorRepository");
   }
 
   init() {
-    super.getDataSource().items(GroupsContractorRepository.name)
+    super.getDataSource().items("GroupsContractorRepository")
       .subscribe(
         data => {
           data.forEach(

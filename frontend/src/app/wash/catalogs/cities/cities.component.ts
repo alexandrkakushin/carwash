@@ -2,13 +2,11 @@
 import {Component} from "@angular/core";
 import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {CatalogComponentCommon} from "../component.common";
-import {MessageService} from "primeng/components/common/messageservice";
 
 @Component({
   selector: "catalog-cities",
   moduleId: module.id,
-  templateUrl: "../list.component.html",
-  providers: [MessageService]
+  templateUrl: "../list.component.html"
 })
 
 export class CitiesCatalogComponent extends CatalogComponentCommon {

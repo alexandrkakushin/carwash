@@ -14,6 +14,8 @@ import {BuildingsRepository} from "./repository/buildings.repository";
 import {TargetsRepository} from "./repository/targets.repository";
 import {RestDataSource} from "./datasource/rest.datasouce";
 import {HttpClientModule} from "@angular/common/http";
+import {AuthService} from "./datasource/auth.service";
+import {RepositoriesService} from "./datasource/repositories.service";
 
 @NgModule({
   imports: [HttpClientModule],
@@ -30,7 +32,8 @@ import {HttpClientModule} from "@angular/common/http";
     MechanismsRepository,
     MaterialsRepository,
     //StaticDataSource
-    { provide: StaticDataSource, useClass: RestDataSource }
+    { provide: StaticDataSource, useClass: RestDataSource },
+    AuthService
   ]
 })
 

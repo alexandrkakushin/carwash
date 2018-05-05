@@ -12,11 +12,11 @@ export class TargetsRepository extends CommonRepository {
   constructor(dataSource: StaticDataSource,
               private buildingsRepository: BuildingsRepository,
               private citiesRepository: CitiesRepository) {
-    super(dataSource, TargetsRepository.name);
+    super(dataSource, "TargetsRepository");
   }
 
   init() {
-    super.getDataSource().items(TargetsRepository.name)
+    super.getDataSource().items("TargetsRepository")
       .subscribe(
         data => {
           data.forEach(

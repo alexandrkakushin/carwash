@@ -2,6 +2,7 @@
 
 html, body {
   height: 100%;
+  background: url("../src/images/bg-light-4789.png") repeat;
 }
 
 html {

@@ -11,11 +11,11 @@ export class BuildingsRepository extends CommonRepository {
 
   constructor(dataSource: StaticDataSource,
               private sectionsRepository: SectionsRepository) {
-    super(dataSource, BuildingsRepository.name);
+    super(dataSource, "BuildingsRepository");
   }
 
   init() {
-    super.getDataSource().items(BuildingsRepository.name)
+    super.getDataSource().items("BuildingsRepository")
       .subscribe(
         data => {
           data.forEach(

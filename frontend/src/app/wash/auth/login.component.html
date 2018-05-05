@@ -1,0 +1,38 @@
+<p-growl [(value)]="msgs"></p-growl>
+
+<form role="form" (submit)="login()">
+  <div style="padding: 50px">
+    <p-card title="CarWash" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+      <p-header>
+      </p-header>
+
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12">
+            <div class="ui-g-4">
+              <label for="username">Пользователь</label>
+            </div>
+            <div class="ui-g-8">
+              <input type="text" pInputText id="username" name="username" [(ngModel)]="credentials.username"/>
+            </div>
+          </div>
+
+          <div class="ui-g-12">
+            <div class="ui-g-4">
+              <label for="password">Пароль</label>
+            </div>
+            <div class="ui-g-8">
+              <input type="password" pInputText id="password" name="password" [(ngModel)]="credentials.password"/>
+            </div>
+          </div>
+        </div>
+
+      <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="submit" pButton icon="fa-user" label="Войти"></button>
+        </div>
+      </p-footer>
+    </p-card>
+  </div>
+</form>
+
+

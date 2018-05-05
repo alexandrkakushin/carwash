@@ -1,4 +1,3 @@
-import {Observable} from "rxjs/Observable";
 import {CatalogCommon} from "../catalog.model";
 
 export interface Repository {

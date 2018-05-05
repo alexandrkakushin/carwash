@@ -8,11 +8,11 @@ import {City} from "../city.model";
 export class CitiesRepository extends CommonRepository {
 
   constructor(dataSource: StaticDataSource) {
-    super(dataSource, CitiesRepository.name);
+    super(dataSource, "CitiesRepository");
   }
 
   init() {
-    super.getDataSource().items(CitiesRepository.name)
+    super.getDataSource().items("CitiesRepository")
       .subscribe(
         data => {
           data.forEach(

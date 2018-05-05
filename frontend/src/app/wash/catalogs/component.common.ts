@@ -42,7 +42,7 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
     return [];
   }
 
-  subscribeMessages(): void {
+  private subscribeMessages(): void {
     this.repository.getMessages().subscribe(
       data => {
         this.msgs = data;

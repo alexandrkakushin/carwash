@@ -13,11 +13,11 @@ export class ContractorsRepository extends CommonRepository {
               private citiesRepository: CitiesRepository,
               private groupsRepository: GroupsContractorRepository
   ) {
-   super(dataSource, ContractorsRepository.name)
+   super(dataSource, "ContractorsRepository")
   }
 
   init() {
-    super.getDataSource().items(ContractorsRepository.name)
+    super.getDataSource().items("ContractorsRepository")
       .subscribe(
         data => {
           data.forEach(

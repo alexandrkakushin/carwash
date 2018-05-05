@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { FormsModule } from "@angular/forms";
 import { ModelModule } from "../model/model.module";
-import { RouterModule } from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import {NavbarComponent} from "./navbar.component";
 import {WashComponent} from "./wash.component";
 import {MaterialsCatalogComponent} from "./catalogs/nomenclature/materials.component";
@@ -35,6 +35,9 @@ import {ListboxModule} from 'primeng/listbox';
 import {BuildingsCatalogComponent} from "./catalogs/buildings/buildings.component";
 import {TargetsCatalogComponent} from "./catalogs/targets/targets.component";
 import {GroupsContractorCatalogComponent} from "./catalogs/groupsContractor/groupContractor.component";
+import {LoginComponent} from "./auth/login.component";
+import {CardModule} from 'primeng/card';
+import {AuthService} from "../model/datasource/auth.service";
 
 @NgModule({
   imports: [
@@ -54,7 +57,8 @@ import {GroupsContractorCatalogComponent} from "./catalogs/groupsContractor/grou
     DropdownModule,
     ToolbarModule,
     SplitButtonModule,
-    ListboxModule
+    ListboxModule,
+    CardModule
   ],
   declarations: [
       WashComponent,
@@ -71,7 +75,9 @@ import {GroupsContractorCatalogComponent} from "./catalogs/groupsContractor/grou
       SectionsCatalogComponent,
       BuildingsCatalogComponent,
       TargetsCatalogComponent,
-      GroupsContractorCatalogComponent
+      GroupsContractorCatalogComponent,
+
+      LoginComponent
   ],
   exports: [WashComponent],
   providers: []
@@ -79,5 +85,8 @@ import {GroupsContractorCatalogComponent} from "./catalogs/groupsContractor/grou
 
 export class WashModule {
 
+  constructor() {
+    console.log("wash module");
+  }
 }
 

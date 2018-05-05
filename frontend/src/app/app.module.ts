@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {WashModule} from "./wash/wash.module";
-import {RouterModule} from "@angular/router";
+import {Router, RouterModule, Routes} from "@angular/router";
 import {WashComponent} from "./wash/wash.component";
 import {MaterialsCatalogComponent} from "./wash/catalogs/nomenclature/materials.component";
 import {ServicesCatalogComponent} from "./wash/catalogs/nomenclature/services.component";
@@ -17,37 +17,63 @@ import {StagesCatalogComponent} from "./wash/catalogs/stages/stages.component";
 import {SectionsCatalogComponent} from "./wash/catalogs/sections/sections.component";
 import {BuildingsCatalogComponent} from "./wash/catalogs/buildings/buildings.component";
 import {TargetsCatalogComponent} from "./wash/catalogs/targets/targets.component";
-import {UnitsMeasureRepository} from "./model/repository/unitsMeasure.repository";
 import {GroupsContractorCatalogComponent} from "./wash/catalogs/groupsContractor/groupContractor.component";
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {LoginComponent} from "./wash/auth/login.component";
+import {AuthService} from "./model/datasource/auth.service";
 
+const routes: Routes = [
+  { path: "carwash", component: WashComponent},
+  { path: "carwash/catalogs/contractors", component: ContractorsCatalogComponent},
+  { path: "carwash/catalogs/cities", component: CitiesCatalogComponent},
+  { path: "carwash/catalogs/units", component: UnitsCatalogComponent},
+  { path: "carwash/catalogs/materials", component: MaterialsCatalogComponent},
+  { path: "carwash/catalogs/services", component: ServicesCatalogComponent},
+  { path: "carwash/catalogs/mechanisms", component: MechanismsCatalogComponent},
+  { path: "carwash/catalogs/stages", component: StagesCatalogComponent },
+  { path: "carwash/catalogs/sections", component: SectionsCatalogComponent },
+  { path: "carwash/catalogs/buildings", component: BuildingsCatalogComponent },
+  { path: "carwash/catalogs/targets", component: TargetsCatalogComponent },
+  { path: "carwash/catalogs/groupscontractor", component: GroupsContractorCatalogComponent },
+
+  { path: "carwash/prices", component: PricesComponent},
+
+  { path: "carwash/refresh", component: RefreshComponent},
+
+  { path: 'carwash/login', component: LoginComponent},
+  { path: "**", redirectTo: "/carwash" }
+];
+
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const xhr = req.clone({
+      headers: req.headers
+        .set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule, WashModule, RouterModule.forRoot([
-      { path: "carwash", component: WashComponent},
-      { path: "carwash/catalogs/contractors", component: ContractorsCatalogComponent},
-      { path: "carwash/catalogs/cities", component: CitiesCatalogComponent},
-      { path: "carwash/catalogs/units", component: UnitsCatalogComponent},
-      { path: "carwash/catalogs/materials", component: MaterialsCatalogComponent},
-      { path: "carwash/catalogs/services", component: ServicesCatalogComponent},
-      { path: "carwash/catalogs/mechanisms", component: MechanismsCatalogComponent},
-      { path: "carwash/catalogs/stages", component: StagesCatalogComponent },
-      { path: "carwash/catalogs/sections", component: SectionsCatalogComponent },
-      { path: "carwash/catalogs/buildings", component: BuildingsCatalogComponent },
-      { path: "carwash/catalogs/targets", component: TargetsCatalogComponent },
-      { path: "carwash/catalogs/groupscontractor", component: GroupsContractorCatalogComponent },
-
-      { path: "carwash/prices", component: PricesComponent},
-
-      { path: "carwash/refresh", component: RefreshComponent},
-
-      { path: "**", redirectTo: "/carwash" }
-    ])
+    HttpClientModule, BrowserModule, WashModule, RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+
+  constructor(private authService: AuthService, private router: Router) {
+    console.log("app module");
+    if (!authService.authenticated) {
+      this.router.navigateByUrl('/carwash/login');
+    }
+  }
+}
+

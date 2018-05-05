@@ -8,6 +8,10 @@ import {MechanismsRepository} from "../model/repository/mechanisms.repository";
 import {StagesRepository} from "../model/repository/stages.repository";
 import {SectionsRepository} from "../model/repository/sections.repository";
 import {BuildingsRepository} from "../model/repository/buildings.repository";
+import {AuthService} from "../model/datasource/auth.service";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {TargetsRepository} from "../model/repository/targets.repository";
 
 @Component({
   selector:"wash",
@@ -16,7 +20,7 @@ import {BuildingsRepository} from "../model/repository/buildings.repository";
 })
 
 export class WashComponent {
-  // todo: временное решение инициализации подчиненных справочников
+
   constructor(
     private unitMeasureRepository: UnitsMeasureRepository,
     private citiesRepository: CitiesRepository,
@@ -26,8 +30,7 @@ export class WashComponent {
     private mechanismsRepository: MechanismsRepository,
     private stagesRepository: StagesRepository,
     private sectionsRepository: SectionsRepository,
-    private buildingsRepository: BuildingsRepository
-  ) {
-    console.log("init repositories");
-  }
+    private buildingsRepository: BuildingsRepository,
+    private targetsRepository: TargetsRepository
+  ) {}
 }

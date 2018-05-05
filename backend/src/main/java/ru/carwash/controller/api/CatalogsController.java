@@ -19,6 +19,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/catalogs")
+@CrossOrigin(origins="*")
 public class CatalogsController {
 
     @Autowired

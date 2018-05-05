@@ -9,11 +9,11 @@ import {Nomenclature} from "../nomenclature.model";
 export class MechanismsRepository extends CommonRepository {
 
   constructor(dataSource: StaticDataSource, private unitsRepository: UnitsMeasureRepository) {
-    super(dataSource, MechanismsRepository.name);
+    super(dataSource, "MechanismsRepository");
   }
 
   init() {
-    super.getDataSource().items(MechanismsRepository.name)
+    super.getDataSource().items("MechanismsRepository")
       .subscribe(
         data => {
           data.forEach(

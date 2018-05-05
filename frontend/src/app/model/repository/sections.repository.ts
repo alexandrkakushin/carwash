@@ -8,11 +8,11 @@ import {StagesRepository} from "./stages.repository";
 export class SectionsRepository extends CommonRepository {
 
   constructor(dataSource: StaticDataSource, private stagesRepository: StagesRepository) {
-    super(dataSource, SectionsRepository.name);
+    super(dataSource, "SectionsRepository");
   }
 
   init() {
-    super.getDataSource().items(SectionsRepository.name)
+    super.getDataSource().items("SectionsRepository")
       .subscribe(
         data => {
           data.forEach(

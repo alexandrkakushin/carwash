@@ -14,11 +14,11 @@ export class StagesRepository extends CommonRepository {
               private materialsRepository: MaterialsRepository,
               private servicesRepository: ServicesRepository,
               private mechanismsRepository: MechanismsRepository) {
-    super(dataSource, StagesRepository.name);
+    super(dataSource, "StagesRepository");
   }
 
   init() {
-    super.getDataSource().items(StagesRepository.name)
+    super.getDataSource().items("StagesRepository")
       .subscribe(
         data => {
           data.forEach(

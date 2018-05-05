@@ -120,53 +120,6 @@ export class StaticDataSource {
     new Target(3, "Третье здание")
   ];
 
-  getStages(): Observable<Stage[]> {
-    return Observable.from([this.stages]);
-  }
-
-  getSections(): Observable<Section[]> {
-    return Observable.from([this.sections]);
-  }
-
-  getBuildings(): Observable<Building[]> {
-    return Observable.from([this.buildings]);
-  }
-
-  getTargets(): Observable<Target[]> {
-    return Observable.from([this.targets]);
-  }
-
-
-  getUnitsMeasure(): Observable<UnitMeasure[]> {
-    return Observable.from([this.unitsMeasure]);
-  }
-
-  getGroupsContractor(): Observable<GroupContractor[]> {
-    return Observable.from([this.groupsContractor]);
-  }
-
-  getCities(): Observable<City[]> {
-    return Observable.from([this.cities]);
-  }
-
-  getMaterials(): Observable<Nomenclature[]> {
-    return Observable.from([this.materials]);
-  }
-
-  getServices(): Observable<Nomenclature[]> {
-    return Observable.from([this.services]);
-  }
-
-  getMechanisms(): Observable<Nomenclature[]> {
-    return Observable.from([this.mechanisms]);
-  }
-
-  getContractors(): Observable<Contractor[]> {
-    return Observable.from([this.contractors]);
-  }
-
-
-
 
   items(repository: string): Observable<any[]> {
 

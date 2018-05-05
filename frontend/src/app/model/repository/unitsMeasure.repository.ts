@@ -7,11 +7,11 @@ import {UnitMeasure} from "../unitMeasure.model";
 export class UnitsMeasureRepository extends CommonRepository {
 
   constructor(dataSource: StaticDataSource) {
-    super(dataSource, UnitsMeasureRepository.name);
+    super(dataSource, "UnitsMeasureRepository");
   }
 
   init() {
-    super.getDataSource().items(UnitsMeasureRepository.name)
+    super.getDataSource().items("UnitsMeasureRepository")
       .subscribe(
         data => {
           data.forEach(
@@ -22,15 +22,4 @@ export class UnitsMeasureRepository extends CommonRepository {
         }
       );
   }
-
-  // edit(element: UnitMeasure): boolean {
-  //   let result = super.getDataSource().editElement({ ...element}, UnitsMeasureRepository.name);
-  //   if (result) {
-  //     let index = super.items().findIndex(line => line.id == element.id);
-  //     super.items()[index] = element;
-  //   }
-  //
-  //   return result;
-  // }
-
 }
