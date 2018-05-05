@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {AppConstant} from "../../app.contants";
 import {Message} from "primeng/api";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,7 @@ export class AuthService {
     this.msgs = [];
 
     this.http
-      .get(AppConstant.getBackendUrl() + '/auth/user', { headers: this.getAuthorizationHeader() })
+      .get(environment.backend + '/auth/user', { headers: this.getAuthorizationHeader() })
         .subscribe(
           value => {
             if (value['name']) {

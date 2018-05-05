@@ -21,6 +21,7 @@ import {GroupsContractorCatalogComponent} from "./wash/catalogs/groupsContractor
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {LoginComponent} from "./wash/auth/login.component";
 import {AuthService} from "./model/datasource/auth.service";
+import {environment} from "../environments/environment";
 
 const routes: Routes = [
   { path: "carwash", component: WashComponent},
@@ -70,7 +71,9 @@ export class XhrInterceptor implements HttpInterceptor {
 export class AppModule {
 
   constructor(private authService: AuthService, private router: Router) {
-    console.log("app module");
+    console.log("constructor AppModule")
+    console.log("backend url: " + environment.backend);
+
     if (!authService.authenticated) {
       this.router.navigateByUrl('/carwash/login');
     }

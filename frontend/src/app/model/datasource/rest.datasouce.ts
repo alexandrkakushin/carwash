@@ -4,15 +4,6 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/observable/from";
 
-import {City} from "../city.model";
-import {UnitMeasure} from "../unitMeasure.model";
-import {GroupContractor} from "../groupContractor.model";
-import {Nomenclature} from "../nomenclature.model";
-import {Contractor} from "../contractor.model";
-import {Stage} from "../stage.model";
-import {Section} from "../section.model";
-import {Building} from "../building.model";
-import {Target} from "../target.model";
 import {CitiesRepository} from "../repository/cities.repository";
 import {UnitsMeasureRepository} from "../repository/unitsMeasure.repository";
 import {MechanismsRepository} from "../repository/mechanisms.repository";
@@ -26,13 +17,13 @@ import {StagesRepository} from "../repository/stages.repository";
 import {SectionsRepository} from "../repository/sections.repository";
 import {BuildingsRepository} from "../repository/buildings.repository";
 import {TargetsRepository} from "../repository/targets.repository";
-import {AppConstant} from "../../app.contants";
 import {AuthService} from "./auth.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class RestDataSource {
 
-  private apiUrl = AppConstant.getBackendUrl() + '/api';
+  private apiUrl = environment.backend + '/api';
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
