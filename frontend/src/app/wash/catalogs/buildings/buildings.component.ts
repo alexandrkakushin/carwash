@@ -1,9 +1,10 @@
 
 import {Component} from "@angular/core";
-import {CatalogComponentCommon} from "../component.common";
+import {CatalogComponentCommon} from "../catalog.component";
 import {BuildingsRepository} from "../../../model/repository/buildings.repository";
 import {SelectItem} from "primeng/api";
 import {SectionsRepository} from "../../../model/repository/sections.repository";
+import {Building} from "../../../model/building.model";
 
 @Component({
   selector: "catalog-buildings",
@@ -17,8 +18,9 @@ export class BuildingsCatalogComponent extends CatalogComponentCommon {
 
   constructor(repository: BuildingsRepository,
               private repositorySections: SectionsRepository) {
-
     super(repository, "Типы сооружений");
+    super.setPrototype(new Building());
+
     this.sections = repositorySections.items().map(
       (item, index) => ({label: item.name, value: item})
     );

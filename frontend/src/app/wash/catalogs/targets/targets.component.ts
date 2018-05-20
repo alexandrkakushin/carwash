@@ -1,10 +1,11 @@
 
 import {Component} from "@angular/core";
-import {CatalogComponentCommon} from "../component.common";
+import {CatalogComponentCommon} from "../catalog.component";
 import {TargetsRepository} from "../../../model/repository/targets.repository";
 import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {BuildingsRepository} from "../../../model/repository/buildings.repository";
 import {SelectItem} from "primeng/api";
+import {Target} from "../../../model/target.model";
 
 @Component({
   selector: "catalog-targets",
@@ -21,12 +22,15 @@ export class TargetsCatalogComponent extends CatalogComponentCommon {
               private repositoryCities: CitiesRepository,
               private repositoryBuildings: BuildingsRepository) {
     super(repository, "Объекты");
+    super.setPrototype(new Target());
+  }
 
-    this.cities = repositoryCities.items().map(
+  initComponent(): void {
+    this.cities = this.repositoryCities.items().map(
       (item, index) => ({label: item.name, value: item})
     );
 
-    this.buildings = repositoryBuildings.items().map(
+    this.buildings = this.repositoryBuildings.items().map(
       (item, index) => ({label: item.name, value: item})
     );
   }

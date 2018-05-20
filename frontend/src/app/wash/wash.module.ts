@@ -37,7 +37,8 @@ import {TargetsCatalogComponent} from "./catalogs/targets/targets.component";
 import {GroupsContractorCatalogComponent} from "./catalogs/groupsContractor/groupContractor.component";
 import {LoginComponent} from "./auth/login.component";
 import {CardModule} from 'primeng/card';
-import {AuthService} from "../model/datasource/auth.service";
+import {EstimateProcessingComponent} from "./processing/estimate.component";
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
   imports: [
@@ -58,7 +59,8 @@ import {AuthService} from "../model/datasource/auth.service";
     ToolbarModule,
     SplitButtonModule,
     ListboxModule,
-    CardModule
+    CardModule,
+    TooltipModule
   ],
   declarations: [
       WashComponent,
@@ -77,7 +79,9 @@ import {AuthService} from "../model/datasource/auth.service";
       TargetsCatalogComponent,
       GroupsContractorCatalogComponent,
 
-      LoginComponent
+      LoginComponent,
+
+      EstimateProcessingComponent
   ],
   exports: [WashComponent],
   providers: []

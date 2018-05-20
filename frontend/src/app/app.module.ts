@@ -22,6 +22,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpR
 import {LoginComponent} from "./wash/auth/login.component";
 import {AuthService} from "./model/datasource/auth.service";
 import {environment} from "../environments/environment";
+import {EstimateProcessingComponent} from "./wash/processing/estimate.component";
 
 const routes: Routes = [
   { path: "carwash", component: WashComponent},
@@ -37,11 +38,16 @@ const routes: Routes = [
   { path: "carwash/catalogs/targets", component: TargetsCatalogComponent },
   { path: "carwash/catalogs/groupscontractor", component: GroupsContractorCatalogComponent },
 
+  // Цены
   { path: "carwash/prices", component: PricesComponent},
-
   { path: "carwash/refresh", component: RefreshComponent},
 
+  // Авторизация
   { path: 'carwash/login', component: LoginComponent},
+
+  // Расчеты
+  { path: 'carwash/processing/estimate/:id', component: EstimateProcessingComponent},
+
   { path: "**", redirectTo: "/carwash" }
 ];
 

@@ -1,9 +1,10 @@
 
 import {Component} from "@angular/core";
-import {CatalogComponentCommon} from "../component.common";
+import {CatalogComponentCommon} from "../catalog.component";
 import {SectionsRepository} from "../../../model/repository/sections.repository";
 import {SelectItem} from "primeng/api";
 import {StagesRepository} from "../../../model/repository/stages.repository";
+import {Section} from "../../../model/section.model";
 
 @Component({
   selector: "catalog-sections",
@@ -18,9 +19,12 @@ export class SectionsCatalogComponent extends CatalogComponentCommon {
   constructor(repository: SectionsRepository,
               private repositoryStages: StagesRepository) {
     super(repository, "Разделы");
+    super.setPrototype(new Section());
+  }
 
+  initComponent(): void {
     this.stages = this.repositoryStages.items().
-      map((item, index) => ({label: item.name, value: item}));
+    map((item, index) => ({label: item.name, value: item}));
   }
 
   columns(): any {

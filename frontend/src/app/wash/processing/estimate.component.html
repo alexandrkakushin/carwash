@@ -1,0 +1,40 @@
+<navbar></navbar>
+
+<div class="pl-2 pr-2 pt-2">
+  <h3>Subheader</h3>
+
+  <p-table [value]="_items" sortField="section">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Этап</th>
+        <th>Объем</th>
+        <th>Ед. материал</th>
+        <th>Ед. работа</th>
+        <th>Ед. механизм</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+      <tr class="ui-widget-header" *ngIf="rowGroupMetadata[rowData.section].index === rowIndex">
+        <td colspan="5">
+          <span style="font-weight:bold">{{rowData.section}}</span>
+        </td>
+      </tr>
+      <tr>
+        <td>{{rowData.stage}}</td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input type="text" pInputText [(ngModel)]="rowData.count">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.count}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>{{rowData.material}}</td>
+        <td>{{rowData.service}}</td>
+        <td>{{rowData.mechanism}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

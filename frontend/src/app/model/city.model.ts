@@ -10,6 +10,13 @@ export class City extends CatalogCommon {
     super(id, name, comment);
   }
 
+  clone(): this {
+    return new (this.constructor as typeof City)(
+      this.id,
+      this.name,
+      this.comment) as this;
+  }
+
   toString() {
     return this.name;
   }

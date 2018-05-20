@@ -1,9 +1,10 @@
 
 import {Component, OnInit} from "@angular/core";
 import {MaterialsRepository} from "../../../model/repository/materials.repository";
-import { CatalogComponentCommon } from "../component.common";
+import { CatalogComponentCommon } from "../catalog.component";
 import {SelectItem} from "primeng/api";
 import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
+import {Nomenclature} from "../../../model/nomenclature.model";
 
 @Component({
   selector: "catalog-materials",
@@ -18,6 +19,10 @@ export class MaterialsCatalogComponent extends CatalogComponentCommon {
   constructor(repository: MaterialsRepository,
               private repositoryUnits: UnitsMeasureRepository) {
     super(repository, "Материалы");
+    super.setPrototype(new Nomenclature());
+  }
+
+  initComponent(): void {
     this.units = this.repositoryUnits.items().map(
       (item, index) => ( {label: item.name, value: item} )
     );

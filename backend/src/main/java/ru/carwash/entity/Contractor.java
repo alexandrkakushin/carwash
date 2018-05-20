@@ -1,6 +1,7 @@
 package ru.carwash.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 /**
  * @author a.kakushin
@@ -23,6 +24,7 @@ public class Contractor implements Catalog {
     @JoinColumn(name="group_id")
     private GroupContractor group;
 
+    @Email
     private String email;
     private String telephone;
 

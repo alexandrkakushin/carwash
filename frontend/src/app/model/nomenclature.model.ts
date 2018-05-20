@@ -28,7 +28,7 @@ export class Nomenclature extends CatalogCommon {
       this.name,
       this.comment,
       this.type,
-      this.unit,
+      this.unit ? this.unit.clone() : null,
       this.price) as this;
   }
 

@@ -14,13 +14,14 @@ import {BuildingsRepository} from "../../model/repository/buildings.repository";
 import {TargetsRepository} from "../../model/repository/targets.repository";
 import {CatalogCommon} from "../../model/catalog.model";
 import {GroupsContractorRepository} from "../../model/repository/groupsContractor.repository";
+import {Contractor} from "../../model/contractor.model";
 
 export abstract class CatalogComponentCommon implements CatalogOperation, OnInit {
 
   name: string;
   cols: any[];
-  selected: CatalogCommon = new CatalogCommon();
-  changed: CatalogCommon = new CatalogCommon();
+  selected: CatalogCommon;
+  changed: CatalogCommon;
 
   msgs: Message[] = [];
 
@@ -31,6 +32,7 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
   }
 
   ngOnInit(): void {
+    this.initComponent();
     this.cols = this.columns();
   }
 
@@ -42,6 +44,15 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
     return [];
   }
 
+  initComponent(): void {
+    console.log('init repository (catalog common)');
+  }
+
+  setPrototype(source: CatalogCommon) {
+    this.selected = source.clone();
+    this.changed  = source.clone();
+  }
+
   private subscribeMessages(): void {
     this.repository.getMessages().subscribe(
       data => {
@@ -50,12 +61,17 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
     );
   }
 
-
   // add/edit/remove view
 
   addElement(): void {
     this.showDialog();
     this.changed = this.repository.createElement();
+  }
+
+  copyElement(): void {
+    this.showDialog();
+    this.changed = this.selected.clone();
+    this.changed.id = null;
   }
 
   editElement(): void {
@@ -74,13 +90,12 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
 
   private showDialog(): void {
     this.displayDialog = true;
-    console.log(this.selected);
+    console.log(this.changed);
   }
 
   hideDialog(): void {
     this.displayDialog = false;
   }
-
 
   isCity(): boolean {
     return this.repository instanceof CitiesRepository;

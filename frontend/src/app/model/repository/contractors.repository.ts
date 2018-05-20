@@ -13,7 +13,7 @@ export class ContractorsRepository extends CommonRepository {
               private citiesRepository: CitiesRepository,
               private groupsRepository: GroupsContractorRepository
   ) {
-   super(dataSource, "ContractorsRepository")
+    super(dataSource, "ContractorsRepository")
   }
 
   init() {

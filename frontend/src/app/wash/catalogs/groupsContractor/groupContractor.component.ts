@@ -1,8 +1,9 @@
 
 import {Component} from "@angular/core";
 import {CitiesRepository} from "../../../model/repository/cities.repository";
-import {CatalogComponentCommon} from "../component.common";
+import {CatalogComponentCommon} from "../catalog.component";
 import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
+import {GroupContractor} from "../../../model/groupContractor.model";
 
 @Component({
   selector: "catalog-groupscontractor",
@@ -14,6 +15,7 @@ export class GroupsContractorCatalogComponent extends CatalogComponentCommon {
 
   constructor(repository: GroupsContractorRepository) {
     super(repository, "Группы контрагентов");
+    super.setPrototype(new GroupContractor());
   }
 
   columns(): any {

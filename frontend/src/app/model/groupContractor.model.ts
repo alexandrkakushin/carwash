@@ -11,6 +11,13 @@ export class GroupContractor extends CatalogCommon {
     super(id, name, comment);
   }
 
+  clone(): this {
+    return new (this.constructor as typeof GroupContractor)(
+      this.id,
+      this.name,
+      this.comment) as this;
+  }
+
   toString() {
     return this.name;
   }

@@ -12,7 +12,9 @@ export class UnitMeasure extends CatalogCommon {
   }
 
   clone(): this {
-    return new
-      (this.constructor as typeof UnitMeasure)(this.id, this.name, this.comment) as this;
+    return new (this.constructor as typeof UnitMeasure)(
+      this.id,
+      this.name,
+      this.comment) as this;
   }
 }

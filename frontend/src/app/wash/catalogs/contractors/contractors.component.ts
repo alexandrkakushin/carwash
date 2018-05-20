@@ -2,7 +2,7 @@
 import {Component} from "@angular/core";
 import {ContractorsRepository} from "../../../model/repository/contractors.repository";
 import {Contractor} from "../../../model/contractor.model";
-import {CatalogComponentCommon} from "../component.common";
+import {CatalogComponentCommon} from "../catalog.component";
 import {SelectItem} from 'primeng/api';
 import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
@@ -22,10 +22,12 @@ export class ContractorsCatalogComponent extends CatalogComponentCommon {
 
   constructor(repository: ContractorsRepository,
               private repositoryCities: CitiesRepository,
-              private repositoryGroups: GroupsContractorRepository
-  ) {
+              private repositoryGroups: GroupsContractorRepository) {
     super(repository, "Контрагенты");
+    super.setPrototype(new Contractor());
+  }
 
+  initComponent(): void {
     this.groups = this.repositoryGroups.items().map(
       (item, index) => ({label: item.name, value: item})
     );

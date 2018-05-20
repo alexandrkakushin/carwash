@@ -5,10 +5,10 @@ import {CatalogCommon} from "./catalog.model";
 
 export class Contractor extends CatalogCommon {
   constructor(
-    public id: number,
-    public name: string,
-    public city: City,
-    public group: GroupContractor,
+    public id?: number,
+    public name?: string,
+    public city?: City,
+    public group?: GroupContractor,
     public email?: string,
     public telephone?: string,
     public comment?: string
@@ -17,7 +17,14 @@ export class Contractor extends CatalogCommon {
   }
 
   clone(): this {
-    return this;
+    return new (this.constructor as typeof Contractor)(
+      this.id,
+      this.name,
+      this.city ? this.city.clone() : null,
+      this.group ? this.group.clone() : null,
+      this.email,
+      this.telephone,
+      this.comment) as this;
   }
 
   toString() {

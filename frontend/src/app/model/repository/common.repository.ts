@@ -5,8 +5,10 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
 import {CatalogCommon} from "../catalog.model";
 import {Message} from "primeng/api";
+import {OnInit} from "@angular/core";
+import {Contractor} from "../contractor.model";
 
-export class CommonRepository implements Repository {
+export class CommonRepository implements Repository, OnInit {
 
   private _items: CatalogCommon[] = [];
   private nameRepository: string;
@@ -18,6 +20,10 @@ export class CommonRepository implements Repository {
     this.refresh();
   }
 
+  ngOnInit(): void {
+    this.init();
+  }
+
   init() {}
 
   getDataSource(): StaticDataSource {
@@ -27,7 +33,6 @@ export class CommonRepository implements Repository {
   getMessages(): Observable<Message[]> {
     return Observable.from([this.msgs]);
   }
-
 
   createElement(): CatalogCommon {
     return new CatalogCommon();

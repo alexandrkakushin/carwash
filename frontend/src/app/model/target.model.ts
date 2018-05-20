@@ -21,8 +21,8 @@ export class Target extends CatalogCommon {
       this.id,
       this.name,
       this.comment,
-      this.building,
-      this.city,
+      this.building ? this.building.clone() : null,
+      this.city ? this.city.clone() : null,
       this.point) as this;
   }
 

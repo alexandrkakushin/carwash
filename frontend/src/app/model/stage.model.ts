@@ -20,9 +20,9 @@ export class Stage extends CatalogCommon {
       this.id,
       this.name,
       this.comment,
-      this.material,
-      this.service,
-      this.mechanism) as this;
+      this.material ? this.material.clone() : null,
+      this.service ? this.service.clone() : null,
+      this.mechanism ? this.mechanism.clone() : null) as this;
   }
 
   toString() {

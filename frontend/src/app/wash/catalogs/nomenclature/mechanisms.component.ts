@@ -2,7 +2,7 @@
 import {Component} from "@angular/core";
 import {MechanismsRepository} from "../../../model/repository/mechanisms.repository";
 import {Nomenclature} from "../../../model/nomenclature.model";
-import { CatalogComponentCommon } from "../component.common";
+import { CatalogComponentCommon } from "../catalog.component";
 import {SelectItem} from "primeng/api";
 import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
 
@@ -19,7 +19,10 @@ export class MechanismsCatalogComponent extends CatalogComponentCommon {
   constructor(repository: MechanismsRepository,
               private repositoryUnits: UnitsMeasureRepository) {
     super(repository, "Механизмы");
+    super.setPrototype(new Nomenclature());
+  }
 
+  initComponent(): void {
     this.units = this.repositoryUnits.items().map(
       (item, index) => ( {label: item.name, value: item} )
     );

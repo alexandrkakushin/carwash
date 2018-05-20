@@ -1,11 +1,12 @@
 
 import {Component} from "@angular/core";
-import {CatalogComponentCommon} from "../component.common";
+import {CatalogComponentCommon} from "../catalog.component";
 import {StagesRepository} from "../../../model/repository/stages.repository";
 import {SelectItem} from "primeng/api";
 import {MaterialsRepository} from "../../../model/repository/materials.repository";
 import {ServicesRepository} from "../../../model/repository/services.repository";
 import {MechanismsRepository} from "../../../model/repository/mechanisms.repository";
+import {Stage} from "../../../model/stage.model";
 
 @Component({
   selector: "processing-stages",
@@ -25,7 +26,10 @@ export class StagesCatalogComponent extends CatalogComponentCommon {
               private repositoryMechanisms: MechanismsRepository
   ) {
     super(repository, "Этапы");
+    super.setPrototype(new Stage());
+  }
 
+  initComponent(): void {
     this.materials = this.repositoryMaterials.items().map(
       (item, index) => ({label: item.name, value: item})
     );

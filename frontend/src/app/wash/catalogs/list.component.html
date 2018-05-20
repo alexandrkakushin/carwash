@@ -2,7 +2,7 @@
 
 <p-growl [(value)]="msgs"></p-growl>
 
-<div style=" height: 84%; ">
+<div style=" height: 84%;" class="pl-2 pr-2 pt-2">
   <p-table #dt
     [columns]="cols"
     [value]="items()"
@@ -42,12 +42,13 @@
 
     <ng-template pTemplate="summary">
       <div style="text-align:left; margin:4px 4px 0 0">
-        <button type="button" pButton icon="fa-plus" (click)="addElement()"></button>
-        <button type="button" pButton icon="fa-edit" (click)="editElement()" [disabled]="selected.id == undefined"></button>
-        <button type="button" pButton icon="fa-remove" (click)="remove()" [disabled]="selected.id == undefined"></button>
-        <button type="button" pButton icon="fa-refresh" (click)="refresh()"></button>
-
-        <button type="button" pButton icon="fa-cube" class="ui-button-success" [disabled]="selected.id == undefined" *ngIf="isTarget()"></button>
+        <button type="button" pTooltip="Создать новый" pButton icon="fa-plus" (click)="addElement()"></button>
+        <button type="button" pTooltip="Скопировать" pButton icon="fa-copy" (click)="copyElement()"></button>
+        <button type="button" pTooltip="Изменить" pButton icon="fa-edit" (click)="editElement()" [disabled]="selected.id == undefined"></button>
+        <button type="button" pTooltip="Удалить" pButton icon="fa-remove" (click)="remove()" [disabled]="selected.id == undefined"></button>
+        <button type="button" pTooltip="Обновить" pButton icon="fa-refresh" (click)="refresh()"></button>
+        <button type="button" pTooltip="Экспорт в CSV" pButton icon="fa-file-o" (click)="dt.exportCSV()"></button>
+        <button type="button" pTooltip="Перейти к расчетам" pButton icon="fa-cube" class="ui-button-success" [disabled]="selected.id == undefined" *ngIf="isTarget()" [routerLink]="['/carwash/processing/estimate', selected.id]"></button>
       </div>
     </ng-template>
   </p-table>

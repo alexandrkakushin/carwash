@@ -4,6 +4,7 @@ import {Message} from "primeng/api";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
 import {environment} from "../../../environments/environment";
+import {CitiesRepository} from "../repository/cities.repository";
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,9 @@ export class AuthService {
 
   private msgs: Message[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient
+  ) {}
 
   public authenticate(credentials, callback) {
     this.basic = btoa(credentials.username + ':' + credentials.password);
