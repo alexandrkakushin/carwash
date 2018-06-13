@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/observable/from";
+import "rxjs/add/operator/toPromise";
 
 import {CitiesRepository} from "../repository/cities.repository";
 import {UnitsMeasureRepository} from "../repository/unitsMeasure.repository";
@@ -27,27 +28,27 @@ export class RestDataSource {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
+  item(id: number, repository: string): Observable<CatalogCommon> {
+    return this.httpClient
+      .get<CatalogCommon>(
+        this.apiUrl + '/' + this.getController(repository) + '/' + id, { headers: this.authService.getSystemAuthorizationHeader() });
+  }
 
   items(repository: string): Observable<CatalogCommon[]> {
-    if (!this.authService.authenticated) {
-      let _items: CatalogCommon[] = [];
-      return Observable.from([_items]);
-    }
-
     let controller = this.getController(repository);
     return this.httpClient
       .get<CatalogCommon[]>(
-        this.apiUrl + '/' + controller, {headers: this.authService.getAuthorizationHeader()});
+        this.apiUrl + '/' + controller, { headers: this.authService.getSystemAuthorizationHeader() });
   }
 
   deleteElement(element: CatalogCommon, repository: string): Observable<any> {
     return this.httpClient
       .delete(
-        this.apiUrl + '/' + this.getController(repository) + '/' + element.id,  {headers: this.authService.getAuthorizationHeader()});
+        this.apiUrl + '/' + this.getController(repository) + '/' + element.id,  {headers: this.authService.getSystemAuthorizationHeader()});
   }
 
   addElement(element: CatalogCommon, repository: string): Observable<any> {
-    let headers = this.authService.getAuthorizationHeader()
+    let headers = this.authService.getSystemAuthorizationHeader()
       .append("Content-Type", "application/json");
 
     return this.httpClient
@@ -56,7 +57,7 @@ export class RestDataSource {
   }
 
   editElement(element: CatalogCommon, repository: string): Observable<any> {
-    let headers = this.authService.getAuthorizationHeader()
+    let headers = this.authService.getSystemAuthorizationHeader()
       .append("Content-Type", "application/json");
 
     return this.httpClient
@@ -99,6 +100,9 @@ export class RestDataSource {
 
     } else if (repository == "TargetsRepository") {
       name = "catalogs/targets";
+
+    } else if (repository == "KitsRepository") {
+      name = "catalogs/kits";
 
     }
 

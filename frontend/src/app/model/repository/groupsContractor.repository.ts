@@ -11,21 +11,7 @@ export class GroupsContractorRepository extends CommonRepository {
     super(dataSource, "GroupsContractorRepository");
   }
 
-  init() {
-    super.getDataSource().items("GroupsContractorRepository")
-      .subscribe(
-        data => {
-          data.forEach(
-            (item) => {
-              super.items().push(new GroupContractor(
-                item.id,
-                item.name,
-                item.comment)
-             )
-            }
-          );
-        }
-      );
+  assign(element: any): GroupContractor {
+    return GroupContractor.assign(element);
   }
-
 }

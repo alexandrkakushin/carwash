@@ -1,6 +1,8 @@
 package ru.carwash.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,14 +13,22 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "UNITS")
+@Data
 public class Unit implements Catalog {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.Summary.class)
     private Long id;
 
+    @JsonView(View.Summary.class)
+    private String code;
+
+    @JsonView(View.Summary.class)
     private String name;
+
+    @JsonView(View.Summary.class)
     private String comment;
 
     @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY)
@@ -32,40 +42,8 @@ public class Unit implements Catalog {
         this.name = name;
     }
 
-    public Unit(String name, String comment) {
-        this.name = name;
-        this.comment = comment;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Unit(String code, String name) {
+        this.code = code;
         this.name = name;
     }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Set<Nomenclature> getNomenclatures() {
-        return nomenclatures;
-    }
-
-    public void setNomenclatures(Set<Nomenclature> nomenclatures) {
-        this.nomenclatures = nomenclatures;
-    }
-}
+ }

@@ -9,7 +9,7 @@ import {Building} from "../../../model/building.model";
 @Component({
   selector: "catalog-buildings",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../items.component.html"
 })
 
 export class BuildingsCatalogComponent extends CatalogComponentCommon {
@@ -20,10 +20,17 @@ export class BuildingsCatalogComponent extends CatalogComponentCommon {
               private repositorySections: SectionsRepository) {
     super(repository, "Типы сооружений");
     super.setPrototype(new Building());
+  }
 
-    this.sections = repositorySections.items().map(
-      (item, index) => ({label: item.name, value: item})
-    );
+  initComponent(): void {
+    this.repositorySections.getItems()
+      .subscribe(
+        (data) => {
+          this.sections = data.map(
+            (item, index) => ({label: item.name, value: item.id})
+          );
+        }
+      );
   }
 
   columns(): any {

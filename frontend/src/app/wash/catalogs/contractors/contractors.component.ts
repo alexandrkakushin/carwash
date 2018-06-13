@@ -6,13 +6,11 @@ import {CatalogComponentCommon} from "../catalog.component";
 import {SelectItem} from 'primeng/api';
 import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
-import {GroupContractor} from "../../../model/groupContractor.model";
-import {visitValue} from "@angular/compiler/src/util";
 
 @Component({
   selector: "catalog-contractors",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../items.component.html"
 })
 
 export class ContractorsCatalogComponent extends CatalogComponentCommon {
@@ -28,13 +26,23 @@ export class ContractorsCatalogComponent extends CatalogComponentCommon {
   }
 
   initComponent(): void {
-    this.groups = this.repositoryGroups.items().map(
-      (item, index) => ({label: item.name, value: item})
-    );
+    this.repositoryCities.getItems()
+      .subscribe(
+        (data) => {
+          this.cities = data.map(
+            (item, index) => ({label: item.name, value: item.id})
+          );
+        }
+      );
 
-    this.cities = this.repositoryCities.items().map(
-      (item, index) => ({label: item.name, value: item})
-    );
+    this.repositoryGroups.getItems()
+      .subscribe(
+        (data) => {
+          this.groups = data.map(
+            (item, index) => ({label: item.name, value: item.id})
+          );
+        }
+      );
   }
 
   columns(): any[] {

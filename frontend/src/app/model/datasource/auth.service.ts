@@ -4,7 +4,6 @@ import {Message} from "primeng/api";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
 import {environment} from "../../../environments/environment";
-import {CitiesRepository} from "../repository/cities.repository";
 
 @Injectable()
 export class AuthService {
@@ -38,6 +37,13 @@ export class AuthService {
 
   getAuthorizationHeader(): HttpHeaders {
     return new HttpHeaders(this.basic ? {'Authorization' : 'Basic ' + this.basic} : {});
+  }
+
+  getSystemAuthorizationHeader(): HttpHeaders {
+    return new HttpHeaders(
+      {'Authorization' : 'Basic '
+        + btoa(
+            environment.credentials.username + ':' + environment.credentials.password)});
   }
 
   getMessages(): Observable<Message[]> {

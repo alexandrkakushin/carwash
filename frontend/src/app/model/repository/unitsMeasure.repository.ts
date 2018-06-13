@@ -10,16 +10,7 @@ export class UnitsMeasureRepository extends CommonRepository {
     super(dataSource, "UnitsMeasureRepository");
   }
 
-  init() {
-    super.getDataSource().items("UnitsMeasureRepository")
-      .subscribe(
-        data => {
-          data.forEach(
-            (item) => {
-              super.items().push(new UnitMeasure(item.id, item.name, item.comment))
-            }
-          );
-        }
-      );
+  assign(element: any): UnitMeasure {
+    return UnitMeasure.assign(element);
   }
 }

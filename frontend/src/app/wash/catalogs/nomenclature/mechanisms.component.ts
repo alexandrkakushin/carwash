@@ -5,11 +5,12 @@ import {Nomenclature} from "../../../model/nomenclature.model";
 import { CatalogComponentCommon } from "../catalog.component";
 import {SelectItem} from "primeng/api";
 import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
+import {UnitMeasure} from "../../../model/unitMeasure.model";
 
 @Component({
   selector: "catalog-mechanisms",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../items.component.html"
 })
 
 export class MechanismsCatalogComponent extends CatalogComponentCommon {
@@ -19,13 +20,21 @@ export class MechanismsCatalogComponent extends CatalogComponentCommon {
   constructor(repository: MechanismsRepository,
               private repositoryUnits: UnitsMeasureRepository) {
     super(repository, "Механизмы");
-    super.setPrototype(new Nomenclature());
+    super.setPrototype(new Nomenclature(null, null, null, null, 'MECHANISM'));
   }
 
   initComponent(): void {
-    this.units = this.repositoryUnits.items().map(
-      (item, index) => ( {label: item.name, value: item} )
-    );
+    let unit = null;
+    this.repositoryUnits.getItems()
+      .subscribe(
+        (data) => {
+          data.forEach(
+            (item) => {
+              unit = UnitMeasure.assign(item);
+              this.units.push({label: unit, value: item.id})}
+          );
+        }
+      );
   }
 
   columns(): any[] {

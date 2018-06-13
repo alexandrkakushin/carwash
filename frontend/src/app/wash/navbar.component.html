@@ -8,10 +8,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <!--<li class="nav-item active">-->
-        <!--<a class="nav-link" [routerLink]="['/carwash']">Главная <span class="sr-only">(current)</span></a>-->
-      <!--</li>-->
-
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_processing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Расчеты
@@ -25,18 +21,13 @@
         </div>
       </li>
 
-
-
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/carwash/catalogs/contractors']">Контрагенты</a>
-      </li>
-
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Справочники
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/carwash/catalogs/materials']">Материалы</a>
+          <a class="dropdown-item" [routerLink]="['/carwash/catalogs/kits']">Комплекты</a>
           <a class="dropdown-item" [routerLink]="['/carwash/catalogs/mechanisms']">Механизмы</a>
           <a class="dropdown-item" [routerLink]="['/carwash/catalogs/services']">Работы</a>
           <div class="dropdown-divider"></div>
@@ -44,9 +35,14 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" [routerLink]="['/carwash/catalogs/cities']">Города</a>
           <a class="dropdown-item" [routerLink]="['/carwash/catalogs/groupscontractor']">Группы контрагентов</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/carwash/catalogs/contractors']">Контрагенты</a>
         </div>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/carwash/admin']">Администрирование</a>
+      </li>
       <!--<li class="nav-item active">-->
         <!--<a class="nav-link" [routerLink]="['/carwash/refresh']" [queryParams]="{url:'/carwash/prices'}" skipLocationChange="true">Цены<span class="sr-only">(current)</span></a>-->
       <!--</li>-->
@@ -56,7 +52,7 @@
       <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>-->
     <!--</form>-->
 
-    <button *ngIf="isAuthenticated()" type="button" class="btn btn-outline-primary" (click)="logout()">Выйти</button>
-    <button *ngIf="!isAuthenticated()" type="button" class="btn btn-outline-primary" routerLink="/carwash/login">Войти</button>
+    <!--<button *ngIf="isAuthenticated()" type="button" class="btn btn-outline-primary" (click)="logout()">Выйти</button>-->
+    <!--<button *ngIf="!isAuthenticated()" type="button" class="btn btn-outline-primary" routerLink="/carwash/login">Войти</button>-->
   </div>
 </nav>

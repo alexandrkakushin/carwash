@@ -4,6 +4,7 @@ import {GroupContractor} from "./groupContractor.model";
 import {CatalogCommon} from "./catalog.model";
 
 export class Contractor extends CatalogCommon {
+
   constructor(
     public id?: number,
     public name?: string,
@@ -29,5 +30,32 @@ export class Contractor extends CatalogCommon {
 
   toString() {
     return this.name;
+  }
+
+  static assign(element: any): Contractor {
+    return new Contractor(
+      element.id,
+      element.name,
+      element.city ? City.assign(element.city) : null,
+      element.group ? GroupContractor.assign(element.group) : null,
+      element.email,
+      element.telephone,
+      element.comment);
+  }
+
+  get cityId(): number {
+    return this.city ? this.city.id : null;
+  }
+
+  set cityId(id: number) {
+    this.city = new City(id);
+  }
+
+  get groupId(): number {
+    return this.group ? this.group.id : null;
+  }
+
+  set groupId(id: number) {
+    this.group = new GroupContractor(id);
   }
 }

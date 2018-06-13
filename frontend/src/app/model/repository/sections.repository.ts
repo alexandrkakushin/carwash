@@ -7,27 +7,11 @@ import {StagesRepository} from "./stages.repository";
 @Injectable()
 export class SectionsRepository extends CommonRepository {
 
-  constructor(dataSource: StaticDataSource, private stagesRepository: StagesRepository) {
+  constructor(dataSource: StaticDataSource) {
     super(dataSource, "SectionsRepository");
   }
 
-  init() {
-    super.getDataSource().items("SectionsRepository")
-      .subscribe(
-        data => {
-          data.forEach(
-            (item) => {
-              super.items().push(new Section(
-                item.id,
-                item.name,
-                item.comment,
-                item.stages.map(
-                  (itemStage) => {return this.stagesRepository.findByElement(itemStage)}
-                ))
-              )
-            }
-          );
-        }
-      );
+  assign(element: any): Section {
+    return Section.assign(element);
   }
 }

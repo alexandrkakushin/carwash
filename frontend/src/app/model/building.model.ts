@@ -25,6 +25,13 @@ export class Building extends CatalogCommon {
       // todo: скорее всего скопируется ссылка на массив
       this.sections) as this;
   }
+
+  static assign(element: any): Building {
+    return new Building(
+      element.id,
+      element.name,
+      element.comment);
+  }
 }
 
 

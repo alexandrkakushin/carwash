@@ -1,20 +1,20 @@
 
 import {Component} from "@angular/core";
-import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {CatalogComponentCommon} from "../catalog.component";
-import {City} from "../../../model/city.model";
+import {KitsRepository} from "../../../model/repository/kits.repository";
+import {Kit} from "../../../model/kit.model";
 
 @Component({
-  selector: "catalog-cities",
+  selector: "catalog-kits",
   moduleId: module.id,
   templateUrl: "../items.component.html"
 })
 
-export class CitiesCatalogComponent extends CatalogComponentCommon {
+export class KitsCatalogComponent extends CatalogComponentCommon {
 
-  constructor(repository: CitiesRepository) {
-    super(repository, "Города");
-    super.setPrototype(new City());
+  constructor(repository: KitsRepository) {
+    super(repository, "Комплекты");
+    super.setPrototype(new Kit());
   }
 
   columns(): any {

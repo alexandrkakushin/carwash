@@ -1,6 +1,7 @@
 package ru.carwash.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,9 +16,13 @@ public class Stage implements Catalog {
 
     @Id
     @GeneratedValue
+    @JsonView(View.Summary.class)
     private Long id;
 
+    @JsonView(View.Summary.class)
     private String name;
+
+    @JsonView(View.Summary.class)
     private String comment;
 
     @JsonIgnore
@@ -29,14 +34,17 @@ public class Stage implements Catalog {
 
     @ManyToOne
     @JoinColumn(name = "material_id")
+    @JsonView(View.Summary.class)
     private Nomenclature material;
 
     @ManyToOne
     @JoinColumn(name = "service_id")
+    @JsonView(View.Summary.class)
     private Nomenclature service;
 
     @ManyToOne
     @JoinColumn(name = "mechanism_id")
+    @JsonView(View.Summary.class)
     private Nomenclature mechanism;
 
     public Stage() {

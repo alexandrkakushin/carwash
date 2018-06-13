@@ -1,9 +1,14 @@
 <navbar></navbar>
 
 <div class="pl-2 pr-2 pt-2">
-  <h3>Subheader</h3>
-
   <p-table [value]="_items" sortField="section">
+
+    <ng-template pTemplate="caption">
+      <div class="row" style="margin: 4px 4px 0 0">
+        <p>{{target}}</p>
+      </div>
+    </ng-template>
+
     <ng-template pTemplate="header">
       <tr>
         <th>Этап</th>

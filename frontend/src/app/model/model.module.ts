@@ -12,10 +12,11 @@ import {StagesRepository} from "./repository/stages.repository";
 import {SectionsRepository} from "./repository/sections.repository";
 import {BuildingsRepository} from "./repository/buildings.repository";
 import {TargetsRepository} from "./repository/targets.repository";
-import {RestDataSource} from "./datasource/rest.datasouce";
+import {RestDataSource} from "./datasource/catalogs.datasouce";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./datasource/auth.service";
-import {RepositoriesService} from "./datasource/repositories.service";
+import {KitsRepository} from "./repository/kits.repository";
+import {AdminService} from "./datasource/admin.service";
 
 @NgModule({
   imports: [HttpClientModule],
@@ -31,9 +32,10 @@ import {RepositoriesService} from "./datasource/repositories.service";
     ServicesRepository,
     MechanismsRepository,
     MaterialsRepository,
-    //StaticDataSource
+    KitsRepository,
     { provide: StaticDataSource, useClass: RestDataSource },
-    AuthService
+    AuthService,
+    AdminService
   ]
 })
 

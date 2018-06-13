@@ -39,6 +39,11 @@ import {LoginComponent} from "./auth/login.component";
 import {CardModule} from 'primeng/card';
 import {EstimateProcessingComponent} from "./processing/estimate.component";
 import {TooltipModule} from 'primeng/tooltip';
+import {FieldsetModule} from 'primeng/fieldset';
+import {AccordionModule} from 'primeng/accordion';
+import {PanelModule} from 'primeng/panel';
+import {KitsCatalogComponent} from "./catalogs/kits/kits.component";
+import {AdminComponent} from "./admin/admin.component";
 
 @NgModule({
   imports: [
@@ -60,7 +65,10 @@ import {TooltipModule} from 'primeng/tooltip';
     SplitButtonModule,
     ListboxModule,
     CardModule,
-    TooltipModule
+    TooltipModule,
+    FieldsetModule,
+    AccordionModule,
+    PanelModule
   ],
   declarations: [
       WashComponent,
@@ -78,7 +86,8 @@ import {TooltipModule} from 'primeng/tooltip';
       BuildingsCatalogComponent,
       TargetsCatalogComponent,
       GroupsContractorCatalogComponent,
-
+      KitsCatalogComponent,
+      AdminComponent,
       LoginComponent,
 
       EstimateProcessingComponent
@@ -89,8 +98,6 @@ import {TooltipModule} from 'primeng/tooltip';
 
 export class WashModule {
 
-  constructor() {
-    console.log("wash module");
-  }
+  constructor() {}
 }
 

@@ -5,34 +5,18 @@ import {StaticDataSource} from "../datasource/static.datasource";
 import {BuildingsRepository} from "./buildings.repository";
 import {CitiesRepository} from "./cities.repository";
 import {Target} from "../target.model";
+import {CatalogCommon} from "../catalog.model";
+import {City} from "../city.model";
+import {Building} from "../building.model";
 
 @Injectable()
 export class TargetsRepository extends CommonRepository {
 
-  constructor(dataSource: StaticDataSource,
-              private buildingsRepository: BuildingsRepository,
-              private citiesRepository: CitiesRepository) {
+  constructor(dataSource: StaticDataSource) {
     super(dataSource, "TargetsRepository");
   }
 
-  init() {
-    super.getDataSource().items("TargetsRepository")
-      .subscribe(
-        data => {
-          data.forEach(
-            (item) => {
-              super.items().push(new Target(
-                item.id,
-                item.name,
-                item.comment,
-                this.buildingsRepository.findByElement(item.building),
-                this.citiesRepository.findByElement(item.city),
-                item.point)
-              )
-            }
-          );
-        }
-      );
+  assign(element: any): Target {
+    return Target.assign(element);
   }
-
 }

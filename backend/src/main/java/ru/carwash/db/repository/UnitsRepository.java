@@ -12,4 +12,5 @@ public interface UnitsRepository extends CrudRepository<Unit, Long> {
 
     Optional<Unit> findByName(String name);
 
+    Optional<Unit> findByCode(String code);
 }

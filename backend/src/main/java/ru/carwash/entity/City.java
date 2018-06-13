@@ -1,7 +1,8 @@
 package ru.carwash.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,13 +13,18 @@ import java.util.Set;
  */
 @Entity(name = "city")
 @Table(name = "CITIES")
+@Data
 public class City implements Catalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.Summary.class)
     private Long id;
 
+    @JsonView(View.Summary.class)
     private String name;
+
+    @JsonView(View.Summary.class)
     private String comment;
 
     @JsonIgnore
@@ -38,45 +44,5 @@ public class City implements Catalog {
     public City(String name, String comment) {
         this.name = name;
         this.comment = comment;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Set<Contractor> getContractors() {
-        return contractors;
-    }
-
-    public void setContractors(Set<Contractor> contractors) {
-        this.contractors = contractors;
-    }
-
-    public Set<Target> getTargets() {
-        return targets;
-    }
-
-    public void setTargets(Set<Target> targets) {
-        this.targets = targets;
     }
 }

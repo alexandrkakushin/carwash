@@ -14,7 +14,7 @@ import {BuildingsRepository} from "../../model/repository/buildings.repository";
 import {TargetsRepository} from "../../model/repository/targets.repository";
 import {CatalogCommon} from "../../model/catalog.model";
 import {GroupsContractorRepository} from "../../model/repository/groupsContractor.repository";
-import {Contractor} from "../../model/contractor.model";
+import {KitsRepository} from "../../model/repository/kits.repository";
 
 export abstract class CatalogComponentCommon implements CatalogOperation, OnInit {
 
@@ -23,12 +23,15 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
   selected: CatalogCommon;
   changed: CatalogCommon;
 
+  source: CatalogCommon;
+
   msgs: Message[] = [];
 
   displayDialog: boolean;
 
   constructor(private repository, name: string) {
     this.setName(name);
+    this.repository.update();
   }
 
   ngOnInit(): void {
@@ -44,13 +47,12 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
     return [];
   }
 
-  initComponent(): void {
-    console.log('init repository (catalog common)');
-  }
+  initComponent(): void {}
 
   setPrototype(source: CatalogCommon) {
     this.selected = source.clone();
     this.changed  = source.clone();
+    this.source   = source.clone();
   }
 
   private subscribeMessages(): void {
@@ -65,36 +67,46 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
 
   addElement(): void {
     this.showDialog();
-    this.changed = this.repository.createElement();
+    this.changed = this.source.clone();
   }
 
   copyElement(): void {
     this.showDialog();
-    this.changed = this.selected.clone();
-    this.changed.id = null;
+    this.repository.getItem(this.selected.id)
+      .subscribe(
+        (value) => {
+          this.changed = this.repository.assign(value);
+          this.changed.id = null;
+        }
+      );
   }
 
   editElement(): void {
     this.showDialog();
-    this.changed = this.selected.clone();
+    this.repository.getItem(this.selected.id)
+      .subscribe(
+        (value) => {
+          this.changed = this.repository.assign(value);
+        }
+      );
   }
 
   saveChanges(): void {
-    this.hideDialog();
     if (this.changed.id) {
       this.edit(this.changed);
     } else {
       this.add(this.changed);
     }
+    this.hideDialog();
   }
 
   private showDialog(): void {
     this.displayDialog = true;
-    console.log(this.changed);
   }
 
   hideDialog(): void {
     this.displayDialog = false;
+    this.changed = this.source.clone();
   }
 
   isCity(): boolean {
@@ -135,11 +147,14 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
     return this.repository instanceof GroupsContractorRepository;
   }
 
+  isKit(): boolean {
+    return this.repository instanceof KitsRepository;
+  }
 
   // operation with repository
 
-  refresh(): void {
-    this.repository.refresh();
+  update(): void {
+    this.repository.update();
   }
 
   items(): CatalogCommon[] {

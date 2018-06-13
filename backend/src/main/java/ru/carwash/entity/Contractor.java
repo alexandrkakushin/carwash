@@ -1,5 +1,7 @@
 package ru.carwash.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 
@@ -12,22 +14,30 @@ public class Contractor implements Catalog {
 
     @Id
     @GeneratedValue
+    @JsonView(View.Summary.class)
     private Long id;
 
+    @JsonView(View.Summary.class)
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
+    @JsonView(View.Summary.class)
     private City city;
 
     @ManyToOne
     @JoinColumn(name="group_id")
+    @JsonView(View.Summary.class)
     private GroupContractor group;
 
     @Email
+    @JsonView(View.Summary.class)
     private String email;
+
+    @JsonView(View.Summary.class)
     private String telephone;
 
+    @JsonView(View.Summary.class)
     private String comment;
 
     public Contractor() {

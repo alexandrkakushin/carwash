@@ -35,4 +35,24 @@ export class Nomenclature extends CatalogCommon {
   toString() {
     return '(' + this.article + ') ' + this.name;
   }
+
+  static assign(element: any): Nomenclature {
+    return new Nomenclature(
+      element.id,
+      element.article,
+      element.name,
+      element.comment,
+      element.type,
+      element.unit ? UnitMeasure.assign(element.unit) : null,
+      element.price
+    );
+  }
+
+  get unitId(): number {
+    return this.unit ? this.unit.id : null;
+  }
+
+  set unitId(id: number) {
+    this.unit = new UnitMeasure(id);
+  }
 }

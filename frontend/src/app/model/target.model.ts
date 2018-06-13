@@ -29,4 +29,30 @@ export class Target extends CatalogCommon {
   toString() {
     return this.name;
   }
+
+  static assign(element: any): Target {
+    return new Target(
+      element.id,
+      element.name,
+      element.comment,
+      element.building ? Building.assign(element.building) : null,
+      element.city ? City.assign(element.city) : null,
+      element.point);
+  }
+
+  get buildingId(): number {
+    return this.building ? this.building.id : null;
+  }
+
+  set buildingId(value: number) {
+    this.building = new Building(value);
+  }
+
+  get cityId(): number {
+    return this.city ? this.city.id : null;
+  }
+
+  set cityId(value: number) {
+    this.city = new City(value);
+  }
 }

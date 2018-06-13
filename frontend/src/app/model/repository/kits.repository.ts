@@ -2,16 +2,16 @@
 import {Injectable} from "@angular/core";
 import {CommonRepository} from "./common.repository";
 import {StaticDataSource} from "../datasource/static.datasource";
-import {Building} from "../building.model";
+import {Kit} from "../kit.model";
 
 @Injectable()
-export class BuildingsRepository extends CommonRepository {
+export class KitsRepository extends CommonRepository {
 
   constructor(dataSource: StaticDataSource) {
-    super(dataSource, "BuildingsRepository");
+    super(dataSource, "KitsRepository");
   }
 
-  assign(element: any): Building {
-    return Building.assign(element);
+  assign(element: any): Kit {
+    return Kit.assign(element);
   }
 }

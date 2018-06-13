@@ -10,7 +10,8 @@ import {Target} from "../../../model/target.model";
 @Component({
   selector: "catalog-targets",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../items.component.html",
+  providers: [CitiesRepository, BuildingsRepository]
 })
 
 export class TargetsCatalogComponent extends CatalogComponentCommon {
@@ -26,13 +27,23 @@ export class TargetsCatalogComponent extends CatalogComponentCommon {
   }
 
   initComponent(): void {
-    this.cities = this.repositoryCities.items().map(
-      (item, index) => ({label: item.name, value: item})
-    );
+    this.repositoryCities.getItems()
+      .subscribe(
+        (data) => {
+          this.cities = data.map(
+            (item, index) => ({label: item.name, value: item.id})
+          );
+        }
+      );
 
-    this.buildings = this.repositoryBuildings.items().map(
-      (item, index) => ({label: item.name, value: item})
-    );
+    this.repositoryBuildings.getItems()
+      .subscribe(
+        (data) => {
+          this.buildings = data.map(
+            (item, index) => ({label: item.name, value: item.id})
+          );
+        }
+      );
   }
 
   columns(): any {

@@ -7,7 +7,7 @@ import {UnitMeasure} from "../../../model/unitMeasure.model";
 @Component({
   selector: "catalog-groupscontractor",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../items.component.html"
 })
 
 export class UnitsCatalogComponent extends CatalogComponentCommon {
@@ -20,6 +20,7 @@ export class UnitsCatalogComponent extends CatalogComponentCommon {
   columns(): any {
     return [
       {field: "id", header: "ID"},
+      {field: "code", header: "Код ОКЕИ"},
       {field: "name", header: "Наименование"},
       {field: "comment", header: "Комментарий"}
     ];

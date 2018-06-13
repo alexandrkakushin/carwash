@@ -1,8 +1,7 @@
 
 import {CatalogCommon} from "./catalog.model";
 
-export class GroupContractor extends CatalogCommon {
-
+export class Kit extends CatalogCommon {
   constructor(
     public id?: number,
     public name?: string,
@@ -12,7 +11,7 @@ export class GroupContractor extends CatalogCommon {
   }
 
   clone(): this {
-    return new (this.constructor as typeof GroupContractor)(
+    return new (this.constructor as typeof Kit)(
       this.id,
       this.name,
       this.comment) as this;
@@ -22,7 +21,7 @@ export class GroupContractor extends CatalogCommon {
     return this.name;
   }
 
-  static assign(element: any): GroupContractor {
-    return new GroupContractor(element.id, element.name, element.comment);
+  static assign(element: any): Kit {
+    return new Kit(element.id, element.name, element.comment);
   }
 }

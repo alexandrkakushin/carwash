@@ -1,6 +1,7 @@
 package ru.carwash.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,9 +16,13 @@ public class Section implements Catalog {
 
     @Id
     @GeneratedValue
+    @JsonView(View.Summary.class)
     private Long id;
 
+    @JsonView(View.Summary.class)
     private String name;
+
+    @JsonView(View.Summary.class)
     private String comment;
 
     @JsonIgnore
@@ -27,6 +32,7 @@ public class Section implements Catalog {
             inverseJoinColumns = @JoinColumn(name = "building_id"))
     private Set<Building> buildings = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "SECTION_STAGES",
             joinColumns = @JoinColumn(name = "section_id"),

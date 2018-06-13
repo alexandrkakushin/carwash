@@ -9,7 +9,7 @@ import {Section} from "../../../model/section.model";
 @Component({
   selector: "catalog-sections",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../items.component.html"
 })
 
 export class SectionsCatalogComponent extends CatalogComponentCommon {

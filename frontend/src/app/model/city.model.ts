@@ -20,4 +20,8 @@ export class City extends CatalogCommon {
   toString() {
     return this.name;
   }
+
+  static assign(element: any): City {
+    return new City(element.id, element.name, element.comment);
+  }
 }

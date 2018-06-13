@@ -1,6 +1,5 @@
 
 import {Component} from "@angular/core";
-import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {CatalogComponentCommon} from "../catalog.component";
 import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
 import {GroupContractor} from "../../../model/groupContractor.model";
@@ -8,7 +7,7 @@ import {GroupContractor} from "../../../model/groupContractor.model";
 @Component({
   selector: "catalog-groupscontractor",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../items.component.html"
 })
 
 export class GroupsContractorCatalogComponent extends CatalogComponentCommon {

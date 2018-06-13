@@ -1,31 +1,40 @@
 
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {MaterialsRepository} from "../../../model/repository/materials.repository";
 import { CatalogComponentCommon } from "../catalog.component";
 import {SelectItem} from "primeng/api";
 import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
 import {Nomenclature} from "../../../model/nomenclature.model";
+import {UnitMeasure} from "../../../model/unitMeasure.model";
 
 @Component({
   selector: "catalog-materials",
   moduleId: module.id,
-  templateUrl: "../list.component.html"
+  templateUrl: "../items.component.html"
 })
 
 export class MaterialsCatalogComponent extends CatalogComponentCommon {
 
-  units: SelectItem[];
+  units: SelectItem[] = [];
 
   constructor(repository: MaterialsRepository,
               private repositoryUnits: UnitsMeasureRepository) {
     super(repository, "Материалы");
-    super.setPrototype(new Nomenclature());
+    super.setPrototype(new Nomenclature(null, null, null, null, 'MATERIAL'));
   }
 
   initComponent(): void {
-    this.units = this.repositoryUnits.items().map(
-      (item, index) => ( {label: item.name, value: item} )
-    );
+    let unit = null;
+    this.repositoryUnits.getItems()
+      .subscribe(
+        (data) => {
+          data.forEach(
+            (item) => {
+              unit = UnitMeasure.assign(item);
+              this.units.push({label: unit, value: item.id})}
+          );
+        }
+      );
   }
 
   columns(): any[] {

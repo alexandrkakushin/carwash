@@ -23,13 +23,17 @@ import {LoginComponent} from "./wash/auth/login.component";
 import {AuthService} from "./model/datasource/auth.service";
 import {environment} from "../environments/environment";
 import {EstimateProcessingComponent} from "./wash/processing/estimate.component";
+import {KitsCatalogComponent} from "./wash/catalogs/kits/kits.component";
+import {AdminComponent} from "./wash/admin/admin.component";
 
 const routes: Routes = [
   { path: "carwash", component: WashComponent},
+
   { path: "carwash/catalogs/contractors", component: ContractorsCatalogComponent},
   { path: "carwash/catalogs/cities", component: CitiesCatalogComponent},
   { path: "carwash/catalogs/units", component: UnitsCatalogComponent},
   { path: "carwash/catalogs/materials", component: MaterialsCatalogComponent},
+  { path: "carwash/catalogs/kits", component: KitsCatalogComponent},
   { path: "carwash/catalogs/services", component: ServicesCatalogComponent},
   { path: "carwash/catalogs/mechanisms", component: MechanismsCatalogComponent},
   { path: "carwash/catalogs/stages", component: StagesCatalogComponent },
@@ -47,6 +51,9 @@ const routes: Routes = [
 
   // Расчеты
   { path: 'carwash/processing/estimate/:id', component: EstimateProcessingComponent},
+
+  // Администрирование
+  { path: 'carwash/admin', component: AdminComponent},
 
   { path: "**", redirectTo: "/carwash" }
 ];
@@ -70,19 +77,22 @@ export class XhrInterceptor implements HttpInterceptor {
   imports: [
     HttpClientModule, BrowserModule, WashModule, RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  providers: [
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 
 export class AppModule {
 
   constructor(private authService: AuthService, private router: Router) {
-    console.log("constructor AppModule")
     console.log("backend url: " + environment.backend);
 
-    if (!authService.authenticated) {
-      this.router.navigateByUrl('/carwash/login');
-    }
+    //authService.authenticate(credentials = {username: '', password: ''};);
+    // if (!authService.authenticated) {
+    //   this.router.navigateByUrl('/carwash/login');
+    // }
   }
 }
 

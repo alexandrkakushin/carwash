@@ -2,7 +2,7 @@ import {CatalogCommon} from "../catalog.model";
 
 export interface Repository {
 
-  refresh(): void;
+  update(): void;
 
   items(): CatalogCommon[];
 
@@ -11,5 +11,7 @@ export interface Repository {
   add(element: CatalogCommon): void;
 
   edit(element: CatalogCommon): void;
+
+  clear(): void;
 
 }

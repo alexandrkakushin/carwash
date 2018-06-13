@@ -120,6 +120,9 @@ export class StaticDataSource {
     new Target(3, "Третье здание")
   ];
 
+  item(id: number, repository: string): Observable<any> {
+    return null;
+  }
 
   items(repository: string): Observable<any[]> {
 

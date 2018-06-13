@@ -1,6 +1,9 @@
 package ru.carwash.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,24 +14,35 @@ import java.util.Set;
  */
 @Entity(name = "Nomenclature")
 @Table(name = "NOMENCLATURES")
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Nomenclature implements Catalog {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.Summary.class)
     private Long id;
 
+    @JsonView(View.Summary.class)
     private String article;
+
+    @JsonView(View.Summary.class)
     private String name;
+
+    @JsonView(View.Summary.class)
     private String comment;
 
+    @JsonView(View.Summary.class)
     @Enumerated(EnumType.ORDINAL)
     private Type type;
 
     @ManyToOne
     @JoinColumn(name="unit_id")
+    @JsonView(View.Summary.class)
     private Unit unit;
 
+    @JsonView(View.Summary.class)
     private float price;
 
     @OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
@@ -66,87 +80,6 @@ public class Nomenclature implements Catalog {
         this.type = type;
         this.unit = unit;
         this.price = price;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getArticle() {
-        return article;
-    }
-
-    public void setArticle(String article) {
-        this.article = article;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public Set<Stage> getStagesService() {
-        return stagesService;
-    }
-
-    public void setStagesService(Set<Stage> stagesService) {
-        this.stagesService = stagesService;
-    }
-
-    public Set<Stage> getStagesMaterial() {
-        return stagesMaterial;
-    }
-
-    public void setStagesMaterial(Set<Stage> stagesMaterial) {
-        this.stagesMaterial = stagesMaterial;
-    }
-
-    public Set<Stage> getStagesMechanism() {
-        return stagesMechanism;
-    }
-
-    public void setStagesMechanism(Set<Stage> stagesMechanism) {
-        this.stagesMechanism = stagesMechanism;
     }
 
     public static enum Type {

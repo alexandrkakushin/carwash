@@ -26,4 +26,11 @@ export class Section extends CatalogCommon {
     return this.name;
   }
 
+  static assign(element: any): Section {
+    return new Section(
+      element.id,
+      element.name,
+      element.comment);
+  }
+
 }
