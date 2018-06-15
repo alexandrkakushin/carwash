@@ -1,11 +1,14 @@
 
 import {CatalogCommon} from "./catalog.model";
+import {Nomenclature} from "./nomenclature.model";
 
 export class Kit extends CatalogCommon {
+
   constructor(
     public id?: number,
     public name?: string,
-    public comment?: string
+    public comment?: string,
+    public materials?: Nomenclature[]
   ) {
     super(id, name, comment);
   }
@@ -14,7 +17,8 @@ export class Kit extends CatalogCommon {
     return new (this.constructor as typeof Kit)(
       this.id,
       this.name,
-      this.comment) as this;
+      this.comment,
+      this.materials) as this;
   }
 
   toString() {
@@ -22,6 +26,12 @@ export class Kit extends CatalogCommon {
   }
 
   static assign(element: any): Kit {
-    return new Kit(element.id, element.name, element.comment);
+    return new Kit(
+      element.id,
+      element.name,
+      element.comment,
+      element.materials ?
+        element.materials.map((item) => {return Nomenclature.assign(item)}) : null
+    );
   }
 }

@@ -18,13 +18,13 @@ public class GroupContractor implements Catalog {
 
     @Id
     @GeneratedValue
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private Long id;
 
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private String name;
 
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private String comment;
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)

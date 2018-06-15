@@ -54,7 +54,6 @@ public class Okei {
 
     private JSONArray getData() {
         JSONArray data = null;
-
         try {
             URL urlJson = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) urlJson.openConnection();
@@ -63,7 +62,6 @@ public class Okei {
                 BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
                 StringBuilder sb = new StringBuilder();
                 String out;
-
                 while ((out = br.readLine()) != null) {
                     sb.append(out);
                 }
@@ -73,7 +71,6 @@ public class Okei {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return data;
     }
 }

@@ -42,20 +42,4 @@ export class Contractor extends CatalogCommon {
       element.telephone,
       element.comment);
   }
-
-  get cityId(): number {
-    return this.city ? this.city.id : null;
-  }
-
-  set cityId(id: number) {
-    this.city = new City(id);
-  }
-
-  get groupId(): number {
-    return this.group ? this.group.id : null;
-  }
-
-  set groupId(id: number) {
-    this.group = new GroupContractor(id);
-  }
 }

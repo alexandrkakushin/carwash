@@ -47,12 +47,4 @@ export class Nomenclature extends CatalogCommon {
       element.price
     );
   }
-
-  get unitId(): number {
-    return this.unit ? this.unit.id : null;
-  }
-
-  set unitId(id: number) {
-    this.unit = new UnitMeasure(id);
-  }
 }

@@ -31,7 +31,7 @@ export class MaterialsCatalogComponent extends CatalogComponentCommon {
           data.forEach(
             (item) => {
               unit = UnitMeasure.assign(item);
-              this.units.push({label: unit, value: item.id})}
+              this.units.push({label: unit, value: UnitMeasure.assign(item)})}
           );
         }
       );

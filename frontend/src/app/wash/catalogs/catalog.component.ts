@@ -87,6 +87,7 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
       .subscribe(
         (value) => {
           this.changed = this.repository.assign(value);
+          console.log(this.changed);
         }
       );
   }

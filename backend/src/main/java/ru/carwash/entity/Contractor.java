@@ -14,30 +14,30 @@ public class Contractor implements Catalog {
 
     @Id
     @GeneratedValue
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private Long id;
 
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private City city;
 
     @ManyToOne
     @JoinColumn(name="group_id")
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private GroupContractor group;
 
     @Email
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private String email;
 
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private String telephone;
 
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     private String comment;
 
     public Contractor() {

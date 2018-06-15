@@ -3,6 +3,9 @@ import {Component} from "@angular/core";
 import {CatalogComponentCommon} from "../catalog.component";
 import {KitsRepository} from "../../../model/repository/kits.repository";
 import {Kit} from "../../../model/kit.model";
+import {SelectItem} from "primeng/api";
+import {MaterialsRepository} from "../../../model/repository/materials.repository";
+import {Nomenclature} from "../../../model/nomenclature.model";
 
 @Component({
   selector: "catalog-kits",
@@ -12,9 +15,25 @@ import {Kit} from "../../../model/kit.model";
 
 export class KitsCatalogComponent extends CatalogComponentCommon {
 
-  constructor(repository: KitsRepository) {
+  materials: SelectItem[];
+
+  constructor(
+    repository: KitsRepository,
+    private repositoryMaterials: MaterialsRepository)
+  {
     super(repository, "Комплекты");
     super.setPrototype(new Kit());
+  }
+
+  initComponent(): void {
+    this.repositoryMaterials.getItems()
+      .subscribe(
+        (value) => {
+          this.materials = value.map(
+            (item, index) => ({label: Nomenclature.assign(item).toString(), value: Nomenclature.assign(item)})
+          );
+        }
+      )
   }
 
   columns(): any {

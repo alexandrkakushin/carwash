@@ -19,16 +19,16 @@ public class Unit implements Catalog {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private Long id;
 
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String code;
 
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String name;
 
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String comment;
 
     @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY)

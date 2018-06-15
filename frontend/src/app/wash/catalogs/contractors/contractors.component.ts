@@ -6,6 +6,8 @@ import {CatalogComponentCommon} from "../catalog.component";
 import {SelectItem} from 'primeng/api';
 import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
+import {City} from "../../../model/city.model";
+import {GroupContractor} from "../../../model/groupContractor.model";
 
 @Component({
   selector: "catalog-contractors",
@@ -30,7 +32,7 @@ export class ContractorsCatalogComponent extends CatalogComponentCommon {
       .subscribe(
         (data) => {
           this.cities = data.map(
-            (item, index) => ({label: item.name, value: item.id})
+            (item, index) => ({label: item.name, value: City.assign(item)})
           );
         }
       );
@@ -39,7 +41,7 @@ export class ContractorsCatalogComponent extends CatalogComponentCommon {
       .subscribe(
         (data) => {
           this.groups = data.map(
-            (item, index) => ({label: item.name, value: item.id})
+            (item, index) => ({label: item.name, value: GroupContractor.assign(item)})
           );
         }
       );

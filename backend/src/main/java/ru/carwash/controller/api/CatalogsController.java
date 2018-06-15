@@ -132,12 +132,19 @@ public class CatalogsController {
         // contractors
 //        contractorsRepository.save(new Contractor("Песок Черноземья", cityVrn, group1));
 
-        // nomenclatures
-//        Nomenclature material = nomenclaturesRepository.save(new Nomenclature("100500", "Щебень гранитный 20/40", Nomenclature.Type.MATERIAL, unitm2, 250));
-//        nomenclaturesRepository.save(new Nomenclature("100501", "Конус полимерпесчаный", Nomenclature.Type.MATERIAL, unitm2, 150));
-//        nomenclaturesRepository.save(new Nomenclature("100502", "Битумно-каучуковая мастика", Nomenclature.Type.MATERIAL, unitm3, 400));
-//        nomenclaturesRepository.save(new Nomenclature("100503", "Доска обрезная 25х150х6000", Nomenclature.Type.MATERIAL, unitm3, 550));
-//
+        Unit unit = unitsRepository.save(new Unit("тест"));
+
+//         nomenclatures
+        Nomenclature material = nomenclaturesRepository.save(new Nomenclature("100500", "Щебень гранитный 20/40", Nomenclature.Type.MATERIAL, unit, 250));
+        nomenclaturesRepository.save(new Nomenclature("100501", "Конус полимерпесчаный", Nomenclature.Type.MATERIAL, unit, 150));
+        nomenclaturesRepository.save(new Nomenclature("100502", "Битумно-каучуковая мастика", Nomenclature.Type.MATERIAL, unit, 400));
+        nomenclaturesRepository.save(new Nomenclature("100503", "Доска обрезная 25х150х6000", Nomenclature.Type.MATERIAL, unit, 550));
+
+        Kit kit = new Kit("Kit #1");
+        kit.addMaterial(material);
+        kitsRepository.save(kit);
+
+        //
 //        Nomenclature service = nomenclaturesRepository.save(new Nomenclature("200500", "Устройство основания песчаного", Nomenclature.Type.SERVICE, unitm2, 250));
 //        nomenclaturesRepository.save(new Nomenclature("200501", "Затирка поверхности бетона УШМ с упрочнением топпингом", Nomenclature.Type.SERVICE, unitm2, 150));
 //        nomenclaturesRepository.save(new Nomenclature("200502", "Монтаж профлиста на вспомогательное помещение для флотатора", Nomenclature.Type.SERVICE, unitm2, 400));
@@ -182,7 +189,7 @@ public class CatalogsController {
 //        targetsRepository.save(target1);
     }
 
-    @JsonView(View.Summary.class)
+    @JsonView(View.ShortView.class)
     @GetMapping("/{catalog}")
     public ResponseEntity<?> items(@PathVariable("catalog") String catalog) {
         EntityRepository entityRepository = getEntityRepository(catalog);
@@ -213,6 +220,7 @@ public class CatalogsController {
         return null;
     }
 
+    @JsonView(View.Summary.class)
     @GetMapping("/{catalog}/{id}")
     public ResponseEntity<?> item(@PathVariable("catalog") String catalog, @PathVariable("id") Long id) {
         EntityRepository entityRepository = getEntityRepository(catalog);

@@ -18,13 +18,13 @@ public class City implements Catalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private Long id;
 
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String name;
 
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String comment;
 
     @JsonIgnore
