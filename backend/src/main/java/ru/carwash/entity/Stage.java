@@ -16,36 +16,33 @@ public class Stage implements Catalog {
 
     @Id
     @GeneratedValue
-    @JsonView(View.ShortView.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private Long id;
 
-    @JsonView(View.ShortView.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String name;
 
-    @JsonView(View.ShortView.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String comment;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "SECTION_STAGES",
-            joinColumns = @JoinColumn(name = "stage_id"),
-            inverseJoinColumns = @JoinColumn(name = "section_id"))
+    @ManyToMany(mappedBy = "stages")
     private Set<Section> sections = new HashSet<>();
 
-//    @ManyToOne
-//    @JoinColumn(name = "material_id")
-//    @JsonView(View.Summary.class)
-//    private Nomenclature material;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "service_id")
-//    @JsonView(View.Summary.class)
-//    private Nomenclature service;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "mechanism_id")
-//    @JsonView(View.Summary.class)
-//    private Nomenclature mechanism;
+    @ManyToOne
+    @JoinColumn(name = "kit_id")
+    @JsonView({View.Summary.class, View.ShortView.class})
+    private Kit kit;
+
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    @JsonView({View.Summary.class, View.ShortView.class})
+    private Nomenclature service;
+
+    @ManyToOne
+    @JoinColumn(name = "mechanism_id")
+    @JsonView({View.Summary.class, View.ShortView.class})
+    private Nomenclature mechanism;
 
     public Stage() {
     }
@@ -78,38 +75,35 @@ public class Stage implements Catalog {
         this.comment = comment;
     }
 
-//
-//
-//
-//    public Set<Section> getSections() {
-//        return sections;
-//    }
-//
-//    public void setSections(Set<Section> sections) {
-//        this.sections = sections;
-//    }
-//
-//    public Nomenclature getService() {
-//        return service;
-//    }
-//
-//    public void setService(Nomenclature service) {
-//        this.service = service;
-//    }
-//
-//    public Nomenclature getMaterial() {
-//        return material;
-//    }
-//
-//    public void setMaterial(Nomenclature material) {
-//        this.material = material;
-//    }
-//
-//    public Nomenclature getMechanism() {
-//        return mechanism;
-//    }
-//
-//    public void setMechanism(Nomenclature mechanism) {
-//        this.mechanism = mechanism;
-//    }
+    public Set<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(Set<Section> sections) {
+        this.sections = sections;
+    }
+
+    public Kit getKit() {
+        return kit;
+    }
+
+    public void setKit(Kit kit) {
+        this.kit = kit;
+    }
+
+    public Nomenclature getService() {
+        return service;
+    }
+
+    public void setService(Nomenclature service) {
+        this.service = service;
+    }
+
+    public Nomenclature getMechanism() {
+        return mechanism;
+    }
+
+    public void setMechanism(Nomenclature mechanism) {
+        this.mechanism = mechanism;
+    }
 }

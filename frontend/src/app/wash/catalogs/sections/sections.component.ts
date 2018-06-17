@@ -5,6 +5,7 @@ import {SectionsRepository} from "../../../model/repository/sections.repository"
 import {SelectItem} from "primeng/api";
 import {StagesRepository} from "../../../model/repository/stages.repository";
 import {Section} from "../../../model/section.model";
+import {Stage} from "../../../model/stage.model";
 
 @Component({
   selector: "catalog-sections",
@@ -23,8 +24,14 @@ export class SectionsCatalogComponent extends CatalogComponentCommon {
   }
 
   initComponent(): void {
-    this.stages = this.repositoryStages.items().
-    map((item, index) => ({label: item.name, value: item}));
+    this.repositoryStages.getItems()
+      .subscribe(
+        data => {
+          this.stages = data.map(
+            (item) => ({label: item.name, value: Stage.assign(item)})
+          )
+        }
+      );
   }
 
   columns(): any {

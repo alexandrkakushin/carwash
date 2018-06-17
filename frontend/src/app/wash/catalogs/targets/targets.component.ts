@@ -6,6 +6,8 @@ import {CitiesRepository} from "../../../model/repository/cities.repository";
 import {BuildingsRepository} from "../../../model/repository/buildings.repository";
 import {SelectItem} from "primeng/api";
 import {Target} from "../../../model/target.model";
+import {City} from "../../../model/city.model";
+import {Building} from "../../../model/building.model";
 
 @Component({
   selector: "catalog-targets",
@@ -31,7 +33,7 @@ export class TargetsCatalogComponent extends CatalogComponentCommon {
       .subscribe(
         (data) => {
           this.cities = data.map(
-            (item, index) => ({label: item.name, value: item.id})
+            (item, index) => ({label: item.name, value: City.assign(item)})
           );
         }
       );
@@ -40,7 +42,7 @@ export class TargetsCatalogComponent extends CatalogComponentCommon {
       .subscribe(
         (data) => {
           this.buildings = data.map(
-            (item, index) => ({label: item.name, value: item.id})
+            (item, index) => ({label: item.name, value: Building.assign(item, true)})
           );
         }
       );

@@ -28,17 +28,22 @@ public class Kit implements Catalog {
     @JsonView({View.Summary.class, View.ShortView.class})
     private String comment;
 
-    @JsonView({View.Summary.class})
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @JoinTable(name = "KIT_NOMENCLATURE",
             joinColumns = @JoinColumn(name = "kit_id"),
             inverseJoinColumns = @JoinColumn(name = "nomenclature_id"))
+    @JsonView({View.Summary.class})
     private Set<Nomenclature> materials = new HashSet<>();
+
+    @OneToMany(mappedBy = "kit", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Stage> stagesKit = new HashSet<>();
 
     public Kit() {
     }
 
     public Kit(String name) {
+        this();
         this.name = name;
     }
 

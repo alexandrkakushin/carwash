@@ -5,6 +5,7 @@ import {BuildingsRepository} from "../../../model/repository/buildings.repositor
 import {SelectItem} from "primeng/api";
 import {SectionsRepository} from "../../../model/repository/sections.repository";
 import {Building} from "../../../model/building.model";
+import {Section} from "../../../model/section.model";
 
 @Component({
   selector: "catalog-buildings",
@@ -27,7 +28,7 @@ export class BuildingsCatalogComponent extends CatalogComponentCommon {
       .subscribe(
         (data) => {
           this.sections = data.map(
-            (item, index) => ({label: item.name, value: item.id})
+            (item, index) => ({label: item.name, value: Section.assign(item, true)})
           );
         }
       );

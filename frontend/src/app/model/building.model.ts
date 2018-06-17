@@ -26,11 +26,13 @@ export class Building extends CatalogCommon {
       this.sections) as this;
   }
 
-  static assign(element: any): Building {
+  static assign(element: any, short?: boolean): Building {
     return new Building(
       element.id,
       element.name,
-      element.comment);
+      element.comment,
+      !short && element.sections ?
+        element.sections.map((item) => {return Section.assign(item, true)}) : null);
   }
 }
 

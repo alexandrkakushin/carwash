@@ -237,19 +237,19 @@
 
     <div class="ui-grid-row">
       <div class="ui-grid-col-4">
-        <label for="stage_service">Работа</label>
+        <label for="stage_kit">Комплект</label>
       </div>
       <div class="ui-grid-col-8">
-        <p-dropdown id="stage_service" [options]="services" [(ngModel)]="changed.serviceId" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
+        <p-dropdown id="stage_kit" [dataKey]="id" [options]="kits" [(ngModel)]="changed.kit" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
       </div>
     </div>
 
     <div class="ui-grid-row">
       <div class="ui-grid-col-4">
-        <label for="stage_material">Материал</label>
+        <label for="stage_service">Работа</label>
       </div>
       <div class="ui-grid-col-8">
-        <p-dropdown id="stage_material" [options]="materials" [(ngModel)]="changed.materialId" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
+        <p-dropdown id="stage_service" [dataKey]="id" [options]="services" [(ngModel)]="changed.service" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
       </div>
     </div>
 
@@ -258,7 +258,7 @@
         <label for="stage_mechanism">Механизм</label>
       </div>
       <div class="ui-grid-col-8">
-        <p-dropdown id="stage_mechanism" [options]="mechanisms" [(ngModel)]="changed.mechanismId" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
+        <p-dropdown id="stage_mechanism" [dataKey]="id" [options]="mechanisms" [(ngModel)]="changed.mechanism" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
       </div>
     </div>
 
@@ -295,7 +295,7 @@
     </div>
 
     <div class="ui-grid-row">
-      <p-listbox [options]="stages" [(ngModel)]="changed.stages" multiple="multiple" checkbox="checkbox" filter="filter" [listStyle]="{'max-height':'200px', 'min-height':'200px'}" [style]="{'width':'550px'}">
+      <p-listbox [dataKey]="id" [options]="stages" [(ngModel)]="changed.stages" multiple="multiple" checkbox="checkbox" filter="filter" [listStyle]="{'max-height':'200px', 'min-height':'200px'}" [style]="{'width':'550px'}">
         <p-header>
           <!--<i class="fa fa-car"></i>-->
           Этапы
@@ -327,7 +327,7 @@
     </div>
 
     <div class="ui-grid-row">
-      <p-listbox [options]="sections" [(ngModel)]="changed.sections" multiple="multiple" checkbox="checkbox" filter="filter" [listStyle]="{'max-height':'200px', 'min-height':'200px'}" [style]="{'width':'550px'}">
+      <p-listbox [dataKey]="id" [options]="sections" [(ngModel)]="changed.sections" multiple="multiple" checkbox="checkbox" filter="filter" [listStyle]="{'max-height':'200px', 'min-height':'200px'}" [style]="{'width':'550px'}">
         <p-header>
           <!--<i class="fa fa-car"></i>-->
           Разделы
@@ -353,7 +353,7 @@
         <label for="target_building">Тип сооружения</label>
       </div>
       <div class="ui-grid-col-8">
-        <p-dropdown id="target_building" [options]="buildings" [(ngModel)]="changed.buildingId" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
+        <p-dropdown id="target_building" [dataKey]="id" [options]="buildings" [(ngModel)]="changed.building" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
       </div>
     </div>
 
@@ -362,7 +362,7 @@
         <label for="target_city">Город</label>
       </div>
       <div class="ui-grid-col-8">
-        <p-dropdown id="target_city" [options]="cities" [(ngModel)]="changed.cityId" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
+        <p-dropdown id="target_city" [dataKey]="id" [options]="cities" [(ngModel)]="changed.city" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
       </div>
     </div>
 

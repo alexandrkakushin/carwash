@@ -25,12 +25,12 @@ export class Kit extends CatalogCommon {
     return this.name;
   }
 
-  static assign(element: any): Kit {
+  static assign(element: any, short?: boolean): Kit {
     return new Kit(
       element.id,
       element.name,
       element.comment,
-      element.materials ?
+      !short && element.materials ?
         element.materials.map((item) => {return Nomenclature.assign(item)}) : null
     );
   }

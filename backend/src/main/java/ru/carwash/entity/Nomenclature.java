@@ -44,24 +44,23 @@ public class Nomenclature implements Catalog {
     private float price;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "KIT_NOMENCLATURE",
-            joinColumns = @JoinColumn(name = "nomenclature_id"),
-            inverseJoinColumns = @JoinColumn(name = "kit_id"))
+    @ManyToMany(mappedBy = "materials")
+//    @JoinTable(name = "KIT_NOMENCLATURE",
+//            joinColumns = @JoinColumn(name = "nomenclature_id"),
+//            inverseJoinColumns = @JoinColumn(name = "kit_id"))
     private Set<Kit> kits = new HashSet<>();
 
+    @OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Stage> stagesService = new HashSet<>();
 
-//    @OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
-//    @JsonIgnore
-//    private Set<Stage> stagesService = new HashSet<>();
-//
 //    @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
 //    @JsonIgnore
 //    private Set<Stage> stagesMaterial = new HashSet<>();
-//
-//    @OneToMany(mappedBy = "mechanism", fetch = FetchType.LAZY)
-//    @JsonIgnore
-//    private Set<Stage> stagesMechanism = new HashSet<>();
+
+    @OneToMany(mappedBy = "mechanism", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Stage> stagesMechanism = new HashSet<>();
 
     public Nomenclature() {
     }

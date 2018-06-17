@@ -116,7 +116,7 @@ public class CatalogsController {
 
     @PostConstruct
     public void init() {
-        // cities
+//        // cities
         City cityLipetsk = citiesRepository.save(new City("Липецк"));
         City cityTambov = citiesRepository.save(new City("Тамбов"));
         City cityVrn = citiesRepository.save(new City("Воронеж"));
@@ -152,41 +152,41 @@ public class CatalogsController {
 //        Nomenclature mechanism = nomenclaturesRepository.save(new Nomenclature("300500", "Монтаж сборных железобетонных плит", Nomenclature.Type.MECHANISM, unitm2, 250));
 //        nomenclaturesRepository.save(new Nomenclature("300501", "Монтаж элементов железобетонных колодцев 1,5м", Nomenclature.Type.MECHANISM, unitm2, 150));
 //        nomenclaturesRepository.save(new Nomenclature("300502", "Монтаж профнастила Н75-750-0,8", Nomenclature.Type.MECHANISM, unitm2, 400));
-//
-//        Stage stage1 = stagesRepository.save(new Stage("Стадия №1", material, service, mechanism));
-//        Stage stage2 = stagesRepository.save(new Stage("Стадия №2"));
-//        Stage stage3 = stagesRepository.save(new Stage("Стадия №3"));
-//        Stage stage4 = stagesRepository.save(new Stage("Стадия №4"));
-//        Stage stage5 = stagesRepository.save(new Stage("Стадия №5"));
-//        Stage stage6 = stagesRepository.save(new Stage("Стадия №6"));
-//        Stage stage7 = stagesRepository.save(new Stage("Стадия №7"));
-//        Stage stage8 = stagesRepository.save(new Stage("Стадия №8"));
-//        Stage stage9 = stagesRepository.save(new Stage("Стадия №9"));
-//        Stage stage10 = stagesRepository.save(new Stage("Стадия №10"));
-//
-//        Section section1 = new Section("Секция 1");
-//        section1.addStage(stage1);
-//        section1.addStage(stage2);
-//        section1.addStage(stage3);
-//        sectionsRepository.save(section1);
-//
-//        Section section2 = new Section("Секция 2");
-//        section2.addStage(stage1);
-//        section2.addStage(stage2);
-//        section2.addStage(stage3);
-//        sectionsRepository.save(section2);
-//
-//        Building building1 = new Building("Тип сооружения 1");
-//        building1.addSection(section1);
-//        building1.addSection(section2);
-//        buildingsRepository.save(building1);
-//
-//        Building building2 = new Building("Тип сооружения 2");
-//        building2.addSection(section2);
-//        buildingsRepository.save(building2);
-//
-//        Target target1 = new Target("Автомойка на 3 бокса", "", building1, cityVrn);
-//        targetsRepository.save(target1);
+////
+////        Stage stage1 = stagesRepository.save(new Stage("Стадия №1", material, service, mechanism));
+////        Stage stage2 = stagesRepository.save(new Stage("Стадия №2"));
+////        Stage stage3 = stagesRepository.save(new Stage("Стадия №3"));
+////        Stage stage4 = stagesRepository.save(new Stage("Стадия №4"));
+////        Stage stage5 = stagesRepository.save(new Stage("Стадия №5"));
+////        Stage stage6 = stagesRepository.save(new Stage("Стадия №6"));
+////        Stage stage7 = stagesRepository.save(new Stage("Стадия №7"));
+////        Stage stage8 = stagesRepository.save(new Stage("Стадия №8"));
+////        Stage stage9 = stagesRepository.save(new Stage("Стадия №9"));
+////        Stage stage10 = stagesRepository.save(new Stage("Стадия №10"));
+////
+////        Section section1 = new Section("Секция 1");
+////        section1.addStage(stage1);
+////        section1.addStage(stage2);
+////        section1.addStage(stage3);
+////        sectionsRepository.save(section1);
+////
+////        Section section2 = new Section("Секция 2");
+////        section2.addStage(stage1);
+////        section2.addStage(stage2);
+////        section2.addStage(stage3);
+////        sectionsRepository.save(section2);
+////
+////        Building building1 = new Building("Тип сооружения 1");
+////        building1.addSection(section1);
+////        building1.addSection(section2);
+////        buildingsRepository.save(building1);
+////
+////        Building building2 = new Building("Тип сооружения 2");
+////        building2.addSection(section2);
+////        buildingsRepository.save(building2);
+////
+////        Target target1 = new Target("Автомойка на 3 бокса", "", building1, cityVrn);
+////        targetsRepository.save(target1);
     }
 
     @JsonView(View.ShortView.class)

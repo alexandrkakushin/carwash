@@ -24,15 +24,10 @@ export class MechanismsCatalogComponent extends CatalogComponentCommon {
   }
 
   initComponent(): void {
-    let unit = null;
     this.repositoryUnits.getItems()
       .subscribe(
-        (data) => {
-          data.forEach(
-            (item) => {
-              unit = UnitMeasure.assign(item);
-              this.units.push({label: unit, value: UnitMeasure.assign(item)})}
-          );
+        (value) => {
+          this.units = value.map((item, index) => ({label: UnitMeasure.assign(item).toString(), value: UnitMeasure.assign(item)}))
         }
       );
   }

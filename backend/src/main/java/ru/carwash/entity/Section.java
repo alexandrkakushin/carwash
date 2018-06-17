@@ -10,34 +10,31 @@ import java.util.Set;
 /**
  * @author a.kakushin
  */
-@Entity
+@Entity(name = "section")
 @Table(name = "SECTIONS")
 public class Section implements Catalog {
 
     @Id
     @GeneratedValue
-    @JsonView(View.ShortView.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private Long id;
 
-    @JsonView(View.ShortView.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String name;
 
-    @JsonView(View.ShortView.class)
+    @JsonView({View.Summary.class, View.ShortView.class})
     private String comment;
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "BUILDING_SECTIONS",
-            joinColumns = @JoinColumn(name = "section_id"),
-            inverseJoinColumns = @JoinColumn(name = "building_id"))
-    private Set<Building> buildings = new HashSet<>();
-
-    @JsonIgnore
-    @ManyToMany
+    @JsonView({View.Summary.class})
+    @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @JoinTable(name = "SECTION_STAGES",
             joinColumns = @JoinColumn(name = "section_id"),
             inverseJoinColumns = @JoinColumn(name = "stage_id"))
     private Set<Stage> stages = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "sections")
+    private Set<Building> buildings = new HashSet<>();
 
     public Section() {
     }

@@ -29,7 +29,7 @@ public class City implements Catalog {
 
     @JsonIgnore
     @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
-    private Set<Contractor> contractors = new HashSet<Contractor>();
+    private Set<Contractor> contractors = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
