@@ -1,109 +1,43 @@
 package ru.carwash.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author a.kakushin
  */
-@Entity
+@Entity(name = "stage")
 @Table(name = "STAGES")
+@Data
 public class Stage implements Catalog {
 
     @Id
-    @GeneratedValue
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView({View.Element.class, View.List.class})
     private Long id;
 
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private String name;
 
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private String comment;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "stages")
-    private Set<Section> sections = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "kit_id")
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private Kit kit;
 
     @ManyToOne
     @JoinColumn(name = "service_id")
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private Nomenclature service;
 
     @ManyToOne
     @JoinColumn(name = "mechanism_id")
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private Nomenclature mechanism;
 
-    public Stage() {
-    }
-
-    public Stage(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Set<Section> getSections() {
-        return sections;
-    }
-
-    public void setSections(Set<Section> sections) {
-        this.sections = sections;
-    }
-
-    public Kit getKit() {
-        return kit;
-    }
-
-    public void setKit(Kit kit) {
-        this.kit = kit;
-    }
-
-    public Nomenclature getService() {
-        return service;
-    }
-
-    public void setService(Nomenclature service) {
-        this.service = service;
-    }
-
-    public Nomenclature getMechanism() {
-        return mechanism;
-    }
-
-    public void setMechanism(Nomenclature mechanism) {
-        this.mechanism = mechanism;
-    }
+    public Stage() {}
 }

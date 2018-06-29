@@ -1,21 +1,21 @@
 
 import {Injectable} from "@angular/core";
-import {Nomenclature} from "../nomenclature.model";
+import {Nomenclature} from "../entity/catalogs/nomenclature.model";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
-import {City} from "../city.model";
-import {Contractor} from "../contractor.model";
-import {GroupContractor} from "../groupContractor.model";
-import {UnitMeasure} from "../unitMeasure.model";
-import {Stage} from "../stage.model";
-import {Section} from "../section.model";
-import {Building} from "../building.model";
-import {Target} from "../target.model";
-import {UnitsMeasureRepository} from "../repository/unitsMeasure.repository";
-import {CitiesRepository} from "../repository/cities.repository";
-import {MaterialsRepository} from "../repository/materials.repository";
-import {ServicesRepository} from "../repository/services.repository";
-import {MechanismsRepository} from "../repository/mechanisms.repository";
+import {City} from "../entity/catalogs/city.model";
+import {Contractor} from "../entity/catalogs/contractor.model";
+import {GroupContractor} from "../entity/catalogs/groupContractor.model";
+import {UnitMeasure} from "../entity/catalogs/unitMeasure.model";
+import {Stage} from "../entity/catalogs/stage.model";
+import {Section} from "../entity/catalogs/section.model";
+import {Building} from "../entity/catalogs/building.model";
+import {Target} from "../entity/catalogs/target.model";
+import {UnitsMeasureRepository} from "../repository/catalogs/unitsMeasure.repository";
+import {CitiesRepository} from "../repository/catalogs/cities.repository";
+import {MaterialsRepository} from "../repository/catalogs/nomenclature/materials.repository";
+import {ServicesRepository} from "../repository/catalogs/nomenclature/services.repository";
+import {MechanismsRepository} from "../repository/catalogs/nomenclature/mechanisms.repository";
 
 @Injectable()
 export class StaticDataSource {

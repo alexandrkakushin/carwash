@@ -1,8 +1,8 @@
 
 import {Component} from "@angular/core";
 import {CatalogComponentCommon} from "../catalog.component";
-import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
-import {UnitMeasure} from "../../../model/unitMeasure.model";
+import {UnitsMeasureRepository} from "../../../model/repository/catalogs/unitsMeasure.repository";
+import {UnitMeasure} from "../../../model/entity/catalogs/unitMeasure.model";
 
 @Component({
   selector: "catalog-groupscontractor",

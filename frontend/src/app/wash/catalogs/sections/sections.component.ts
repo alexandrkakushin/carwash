@@ -1,11 +1,11 @@
 
 import {Component} from "@angular/core";
 import {CatalogComponentCommon} from "../catalog.component";
-import {SectionsRepository} from "../../../model/repository/sections.repository";
+import {SectionsRepository} from "../../../model/repository/catalogs/sections.repository";
 import {SelectItem} from "primeng/api";
-import {StagesRepository} from "../../../model/repository/stages.repository";
-import {Section} from "../../../model/section.model";
-import {Stage} from "../../../model/stage.model";
+import {StagesRepository} from "../../../model/repository/catalogs/stages.repository";
+import {Section} from "../../../model/entity/catalogs/section.model";
+import {Stage} from "../../../model/entity/catalogs/stage.model";
 
 @Component({
   selector: "catalog-sections",

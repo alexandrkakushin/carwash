@@ -8,6 +8,7 @@ export class Kit extends CatalogCommon {
     public id?: number,
     public name?: string,
     public comment?: string,
+    public main?: Nomenclature,
     public materials?: Nomenclature[]
   ) {
     super(id, name, comment);
@@ -18,6 +19,7 @@ export class Kit extends CatalogCommon {
       this.id,
       this.name,
       this.comment,
+      this.main,
       this.materials) as this;
   }
 
@@ -30,6 +32,7 @@ export class Kit extends CatalogCommon {
       element.id,
       element.name,
       element.comment,
+      !short && element.main ? Nomenclature.assign(element.main) : null,
       !short && element.materials ?
         element.materials.map((item) => {return Nomenclature.assign(item)}) : null
     );

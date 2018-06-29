@@ -18,11 +18,18 @@
       <div class="row">
         <div class="col-sm-8" style="text-align: left" >
           <button type="button" pTooltip="Создать новый" pButton icon="fa-plus" (click)="addElement()"></button>
-          <button type="button" pTooltip="Скопировать" pButton icon="fa-copy" (click)="copyElement()"></button>
+          <button type="button" pTooltip="Скопировать" pButton icon="fa-copy" (click)="copyElement()" [disabled]="selected.id == undefined"></button>
           <button type="button" pTooltip="Изменить" pButton icon="fa-edit" (click)="editElement()" [disabled]="selected.id == undefined"></button>
           <button type="button" pTooltip="Удалить" pButton icon="fa-remove" (click)="remove()" [disabled]="selected.id == undefined"></button>
           <button type="button" pTooltip="Обновить" pButton icon="fa-refresh" (click)="update()"></button>
           <button type="button" pTooltip="Экспорт в CSV" pButton icon="fa-file-o" (click)="dt.exportCSV()"></button>
+
+          <button type="button" pTooltip="Цены" pButton icon="fa-rub"
+                  class="ui-button-success"
+                  [disabled]="selected.id == undefined" *ngIf="isNomenclature()"
+                  [routerLink]="['/carwash/prices', selected.id]">
+          </button>
+
           <button type="button" pTooltip="Перейти к расчетам" pButton icon="fa-cube" class="ui-button-success" [disabled]="selected.id == undefined" *ngIf="isTarget()" [routerLink]="['/carwash/processing/estimate', selected.id]"></button>
         </div>
 
@@ -402,10 +409,10 @@
 
     <div class="ui-grid-row">
       <div class="ui-grid-col-4">
-        <label for="comment_kit">Комментарий</label>
+        <label for="kit_main">Основной материал</label>
       </div>
       <div class="ui-grid-col-8">
-        <textarea id="comment_kit" pInputTextarea [(ngModel)]="changed.comment"></textarea>
+        <p-dropdown id="kit_main" [dataKey]="id" [options]="materials" [(ngModel)]="changed.main" [style]="{'width':'350px'}" filter="true" [autoDisplayFirst]="false"></p-dropdown>
       </div>
     </div>
 
@@ -415,6 +422,15 @@
           Материалы
         </p-header>
       </p-listbox>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4">
+        <label for="comment_kit">Комментарий</label>
+      </div>
+      <div class="ui-grid-col-8">
+        <textarea id="comment_kit" pInputTextarea [(ngModel)]="changed.comment"></textarea>
+      </div>
     </div>
 
   </div>

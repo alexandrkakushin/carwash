@@ -2,8 +2,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
-import {Target} from "../../model/target.model";
-import {TargetsRepository} from "../../model/repository/targets.repository";
+import {Target} from "../../model/entity/catalogs/target.model";
+import {TargetsRepository} from "../../model/repository/catalogs/targets.repository";
 import {isUndefined} from "util";
 
 @Component({

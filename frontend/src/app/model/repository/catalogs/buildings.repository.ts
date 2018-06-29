@@ -1,8 +1,8 @@
 
 import {Injectable} from "@angular/core";
 import {CommonRepository} from "./common.repository";
-import {StaticDataSource} from "../datasource/static.datasource";
-import {Building} from "../building.model";
+import {StaticDataSource} from "../../datasource/static.datasource";
+import {Building} from "../../entity/catalogs/building.model";
 
 @Injectable()
 export class BuildingsRepository extends CommonRepository {

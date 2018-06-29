@@ -1,8 +1,8 @@
 
 import {Injectable} from "@angular/core";
-import {StaticDataSource} from "../datasource/static.datasource";
+import {StaticDataSource} from "../../datasource/static.datasource";
 import {CommonRepository} from "./common.repository";
-import {Stage} from "../stage.model";
+import {Stage} from "../../entity/catalogs/stage.model";
 
 @Injectable()
 export class StagesRepository extends CommonRepository {

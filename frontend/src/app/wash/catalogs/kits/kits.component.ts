@@ -1,11 +1,11 @@
 
 import {Component} from "@angular/core";
 import {CatalogComponentCommon} from "../catalog.component";
-import {KitsRepository} from "../../../model/repository/kits.repository";
-import {Kit} from "../../../model/kit.model";
+import {KitsRepository} from "../../../model/repository/catalogs/kits.repository";
+import {Kit} from "../../../model/entity/catalogs/kit.model";
 import {SelectItem} from "primeng/api";
-import {MaterialsRepository} from "../../../model/repository/materials.repository";
-import {Nomenclature} from "../../../model/nomenclature.model";
+import {MaterialsRepository} from "../../../model/repository/catalogs/nomenclature/materials.repository";
+import {Nomenclature} from "../../../model/entity/catalogs/nomenclature.model";
 
 @Component({
   selector: "catalog-kits",

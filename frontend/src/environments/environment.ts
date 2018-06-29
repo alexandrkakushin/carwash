@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   backend: "http://localhost:8081",
-  credentials: {username: 'user', password: 'password'}
+  credentials: {username: 'admin', password: 'admin'}
 };

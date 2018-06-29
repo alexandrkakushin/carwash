@@ -1,32 +1,36 @@
 <navbar></navbar>
 
-Цены
+<p-growl [(value)]="msgs"></p-growl>
 
-<!--<div class="row">-->
-  <!--<div class="col-sm-4">-->
+<div style=" height: 87%;" class="pl-2 pr-2 pt-2">
+  <p-table [value]="items()">
 
-    <!--<div *ngIf="idContractor == undefined" class="card">-->
-      <!--<table class="table table-hover">-->
-        <!--<thead class="thead-inverse">-->
-        <!--<tr>-->
-          <!--<th style="width: 5%;">#</th>-->
-          <!--<th style="width: 90%;">Наименование</th>-->
-          <!--<th style="width: 25%;">Город</th>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr *ngFor="let item of contractors; let i = index">-->
-          <!--<td><b>{{ i + 1 }}</b></td>-->
-          <!--<td>{{ item.name }}</td>-->
-          <!--<td>{{ item.city }}</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-      <!--</table>-->
-    <!--</div>-->
+    <ng-template pTemplate="caption">
+      <div class="row" style="margin:0 0 0 0">
+        <p>Цены / {{ nameCatalog() }} / {{ nomenclature }}</p>
+      </div>
 
-    <!--<div *ngIf="idContractor != undefined" class="card">-->
-      <!--<p>{{ idContractor }}</p>-->
-    <!--</div>-->
+      <div class="row">
+        <div class="col-sm-8" style="text-align: left" >
+          <button type="button" pTooltip="Перейти в справочник" pButton icon="fa-arrow-left " (click)="gotoCatalog()"></button>
+        </div>
+      </div>
+    </ng-template>
 
-  <!--</div>-->
-<!--</div>-->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Код</th>
+        <th>Дата</th>
+        <th>Цена</th>
+      </tr>
+    </ng-template>
 
+    <ng-template pTemplate="body" let-price>
+      <tr>
+        <td>{{price.id}}</td>
+        <td>{{price.date}}</td>
+        <td>{{price.value}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

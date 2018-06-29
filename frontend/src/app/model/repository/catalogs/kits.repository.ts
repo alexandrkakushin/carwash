@@ -1,8 +1,8 @@
 
 import {Injectable} from "@angular/core";
 import {CommonRepository} from "./common.repository";
-import {StaticDataSource} from "../datasource/static.datasource";
-import {Kit} from "../kit.model";
+import {StaticDataSource} from "../../datasource/static.datasource";
+import {Kit} from "../../entity/catalogs/kit.model";
 
 @Injectable()
 export class KitsRepository extends CommonRepository {

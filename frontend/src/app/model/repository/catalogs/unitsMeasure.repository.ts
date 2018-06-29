@@ -1,7 +1,7 @@
-import {StaticDataSource} from "../datasource/static.datasource";
+import {StaticDataSource} from "../../datasource/static.datasource";
 import {Injectable} from "@angular/core";
 import {CommonRepository} from "./common.repository";
-import {UnitMeasure} from "../unitMeasure.model";
+import {UnitMeasure} from "../../entity/catalogs/unitMeasure.model";
 
 @Injectable()
 export class UnitsMeasureRepository extends CommonRepository {

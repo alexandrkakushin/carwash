@@ -1,15 +1,15 @@
 
 import {Component} from "@angular/core";
 import {CatalogComponentCommon} from "../catalog.component";
-import {StagesRepository} from "../../../model/repository/stages.repository";
+import {StagesRepository} from "../../../model/repository/catalogs/stages.repository";
 import {SelectItem} from "primeng/api";
-import {ServicesRepository} from "../../../model/repository/services.repository";
-import {MechanismsRepository} from "../../../model/repository/mechanisms.repository";
-import {Stage} from "../../../model/stage.model";
-import {Nomenclature} from "../../../model/nomenclature.model";
-import {KitsRepository} from "../../../model/repository/kits.repository";
-import {Kit} from "../../../model/kit.model";
-import {CatalogCommon} from "../../../model/catalog.model";
+import {ServicesRepository} from "../../../model/repository/catalogs/nomenclature/services.repository";
+import {MechanismsRepository} from "../../../model/repository/catalogs/nomenclature/mechanisms.repository";
+import {Stage} from "../../../model/entity/catalogs/stage.model";
+import {Nomenclature} from "../../../model/entity/catalogs/nomenclature.model";
+import {KitsRepository} from "../../../model/repository/catalogs/kits.repository";
+import {Kit} from "../../../model/entity/catalogs/kit.model";
+import {CatalogCommon} from "../../../model/entity/catalogs/catalog.model";
 
 @Component({
   selector: "processing-stages",

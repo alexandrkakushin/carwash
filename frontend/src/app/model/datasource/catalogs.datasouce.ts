@@ -5,19 +5,19 @@ import "rxjs/add/operator/map";
 import "rxjs/add/observable/from";
 import "rxjs/add/operator/toPromise";
 
-import {CitiesRepository} from "../repository/cities.repository";
-import {UnitsMeasureRepository} from "../repository/unitsMeasure.repository";
-import {MechanismsRepository} from "../repository/mechanisms.repository";
-import {ServicesRepository} from "../repository/services.repository";
-import {MaterialsRepository} from "../repository/materials.repository";
+import {CitiesRepository} from "../repository/catalogs/cities.repository";
+import {UnitsMeasureRepository} from "../repository/catalogs/unitsMeasure.repository";
+import {MechanismsRepository} from "../repository/catalogs/nomenclature/mechanisms.repository";
+import {ServicesRepository} from "../repository/catalogs/nomenclature/services.repository";
+import {MaterialsRepository} from "../repository/catalogs/nomenclature/materials.repository";
 import {HttpClient} from "@angular/common/http";
-import {CatalogCommon} from "../catalog.model";
-import {GroupsContractorRepository} from "../repository/groupsContractor.repository";
-import {ContractorsRepository} from "../repository/contractors.repository";
-import {StagesRepository} from "../repository/stages.repository";
-import {SectionsRepository} from "../repository/sections.repository";
-import {BuildingsRepository} from "../repository/buildings.repository";
-import {TargetsRepository} from "../repository/targets.repository";
+import {CatalogCommon} from "../entity/catalogs/catalog.model";
+import {GroupsContractorRepository} from "../repository/catalogs/groupsContractor.repository";
+import {ContractorsRepository} from "../repository/catalogs/contractors.repository";
+import {StagesRepository} from "../repository/catalogs/stages.repository";
+import {SectionsRepository} from "../repository/catalogs/sections.repository";
+import {BuildingsRepository} from "../repository/catalogs/buildings.repository";
+import {TargetsRepository} from "../repository/catalogs/targets.repository";
 import {AuthService} from "./auth.service";
 import {environment} from "../../../environments/environment";
 
@@ -73,6 +73,9 @@ export class RestDataSource {
 
     } else if (repository == "UnitsMeasureRepository") {
       name = "catalogs/units";
+
+    } else if (repository == "NomenclaturesRepository") {
+      name = "catalogs/nomenclatures";
 
     } else if (repository == "MaterialsRepository") {
       name = "catalogs/materials";

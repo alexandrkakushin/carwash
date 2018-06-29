@@ -1,8 +1,8 @@
 
 import {Injectable} from "@angular/core";
-import {StaticDataSource} from "../datasource/static.datasource";
+import {StaticDataSource} from "../../datasource/static.datasource";
 import {CommonRepository} from "./common.repository";
-import {GroupContractor} from "../groupContractor.model";
+import {GroupContractor} from "../../entity/catalogs/groupContractor.model";
 
 @Injectable()
 export class GroupsContractorRepository extends CommonRepository {

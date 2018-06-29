@@ -1,13 +1,13 @@
 
 import {Component} from "@angular/core";
 import {CatalogComponentCommon} from "../catalog.component";
-import {TargetsRepository} from "../../../model/repository/targets.repository";
-import {CitiesRepository} from "../../../model/repository/cities.repository";
-import {BuildingsRepository} from "../../../model/repository/buildings.repository";
+import {TargetsRepository} from "../../../model/repository/catalogs/targets.repository";
+import {CitiesRepository} from "../../../model/repository/catalogs/cities.repository";
+import {BuildingsRepository} from "../../../model/repository/catalogs/buildings.repository";
 import {SelectItem} from "primeng/api";
-import {Target} from "../../../model/target.model";
-import {City} from "../../../model/city.model";
-import {Building} from "../../../model/building.model";
+import {Target} from "../../../model/entity/catalogs/target.model";
+import {City} from "../../../model/entity/catalogs/city.model";
+import {Building} from "../../../model/entity/catalogs/building.model";
 
 @Component({
   selector: "catalog-targets",

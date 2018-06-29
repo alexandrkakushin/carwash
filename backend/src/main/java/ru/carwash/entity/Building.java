@@ -1,7 +1,7 @@
 package ru.carwash.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,70 +12,26 @@ import java.util.Set;
  */
 @Entity(name = "building")
 @Table(name = "BUILDINGS")
+@Data
 public class Building implements Catalog {
 
     @Id
-    @GeneratedValue
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView({View.Element.class, View.List.class})
     private Long id;
 
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private String name;
 
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private String comment;
 
-    @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "BUILDING_SECTIONS",
             joinColumns = @JoinColumn(name = "building_id"),
             inverseJoinColumns = @JoinColumn(name = "section_id"))
-    @JsonView({View.Summary.class})
+    @JsonView({View.Element.class})
     private Set<Section> sections = new HashSet<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
-    private Set<Target> targets = new HashSet<>();
-
-    public Building() {
-    }
-
-    public Building(String name) {
-        this.name = name;
-    }
-
-    public void addSection(Section section) {
-        this.sections.add(section);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Set<Section> getSections() {
-        return sections;
-    }
-
-    public void setSections(Set<Section> sections) {
-        this.sections = sections;
-    }
+    public Building() {}
 }

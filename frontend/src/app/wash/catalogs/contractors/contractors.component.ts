@@ -1,13 +1,13 @@
 
 import {Component} from "@angular/core";
-import {ContractorsRepository} from "../../../model/repository/contractors.repository";
-import {Contractor} from "../../../model/contractor.model";
+import {ContractorsRepository} from "../../../model/repository/catalogs/contractors.repository";
+import {Contractor} from "../../../model/entity/catalogs/contractor.model";
 import {CatalogComponentCommon} from "../catalog.component";
 import {SelectItem} from 'primeng/api';
-import {CitiesRepository} from "../../../model/repository/cities.repository";
-import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
-import {City} from "../../../model/city.model";
-import {GroupContractor} from "../../../model/groupContractor.model";
+import {CitiesRepository} from "../../../model/repository/catalogs/cities.repository";
+import {GroupsContractorRepository} from "../../../model/repository/catalogs/groupsContractor.repository";
+import {City} from "../../../model/entity/catalogs/city.model";
+import {GroupContractor} from "../../../model/entity/catalogs/groupContractor.model";
 
 @Component({
   selector: "catalog-contractors",

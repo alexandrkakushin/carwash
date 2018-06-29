@@ -1,11 +1,11 @@
 
 import {Component} from "@angular/core";
-import {MechanismsRepository} from "../../../model/repository/mechanisms.repository";
-import {Nomenclature} from "../../../model/nomenclature.model";
+import {MechanismsRepository} from "../../../model/repository/catalogs/nomenclature/mechanisms.repository";
+import {Nomenclature} from "../../../model/entity/catalogs/nomenclature.model";
 import { CatalogComponentCommon } from "../catalog.component";
 import {SelectItem} from "primeng/api";
-import {UnitsMeasureRepository} from "../../../model/repository/unitsMeasure.repository";
-import {UnitMeasure} from "../../../model/unitMeasure.model";
+import {UnitsMeasureRepository} from "../../../model/repository/catalogs/unitsMeasure.repository";
+import {UnitMeasure} from "../../../model/entity/catalogs/unitMeasure.model";
 
 @Component({
   selector: "catalog-mechanisms",

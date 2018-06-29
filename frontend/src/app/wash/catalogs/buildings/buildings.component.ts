@@ -1,11 +1,11 @@
 
 import {Component} from "@angular/core";
 import {CatalogComponentCommon} from "../catalog.component";
-import {BuildingsRepository} from "../../../model/repository/buildings.repository";
+import {BuildingsRepository} from "../../../model/repository/catalogs/buildings.repository";
 import {SelectItem} from "primeng/api";
-import {SectionsRepository} from "../../../model/repository/sections.repository";
-import {Building} from "../../../model/building.model";
-import {Section} from "../../../model/section.model";
+import {SectionsRepository} from "../../../model/repository/catalogs/sections.repository";
+import {Building} from "../../../model/entity/catalogs/building.model";
+import {Section} from "../../../model/entity/catalogs/section.model";
 
 @Component({
   selector: "catalog-buildings",

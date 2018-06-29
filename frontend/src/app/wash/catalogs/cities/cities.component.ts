@@ -1,8 +1,8 @@
 
 import {Component} from "@angular/core";
-import {CitiesRepository} from "../../../model/repository/cities.repository";
+import {CitiesRepository} from "../../../model/repository/catalogs/cities.repository";
 import {CatalogComponentCommon} from "../catalog.component";
-import {City} from "../../../model/city.model";
+import {City} from "../../../model/entity/catalogs/city.model";
 
 @Component({
   selector: "catalog-cities",

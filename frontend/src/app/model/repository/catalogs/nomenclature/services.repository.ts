@@ -1,8 +1,8 @@
 
 import {Injectable} from "@angular/core";
-import {StaticDataSource} from "../datasource/static.datasource";
-import {CommonRepository} from "./common.repository";
-import {Nomenclature} from "../nomenclature.model";
+import {StaticDataSource} from "../../../datasource/static.datasource";
+import {CommonRepository} from "../common.repository";
+import {Nomenclature} from "../../../entity/catalogs/nomenclature.model";
 
 @Injectable()
 export class ServicesRepository extends CommonRepository {

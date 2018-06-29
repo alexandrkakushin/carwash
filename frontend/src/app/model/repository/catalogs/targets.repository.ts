@@ -1,13 +1,13 @@
 
 import {Injectable} from "@angular/core";
 import {CommonRepository} from "./common.repository";
-import {StaticDataSource} from "../datasource/static.datasource";
+import {StaticDataSource} from "../../datasource/static.datasource";
 import {BuildingsRepository} from "./buildings.repository";
 import {CitiesRepository} from "./cities.repository";
-import {Target} from "../target.model";
-import {CatalogCommon} from "../catalog.model";
-import {City} from "../city.model";
-import {Building} from "../building.model";
+import {Target} from "../../entity/catalogs/target.model";
+import {CatalogCommon} from "../../entity/catalogs/catalog.model";
+import {City} from "../../entity/catalogs/city.model";
+import {Building} from "../../entity/catalogs/building.model";
 
 @Injectable()
 export class TargetsRepository extends CommonRepository {

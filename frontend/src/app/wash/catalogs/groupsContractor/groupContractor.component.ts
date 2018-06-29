@@ -1,8 +1,8 @@
 
 import {Component} from "@angular/core";
 import {CatalogComponentCommon} from "../catalog.component";
-import {GroupsContractorRepository} from "../../../model/repository/groupsContractor.repository";
-import {GroupContractor} from "../../../model/groupContractor.model";
+import {GroupsContractorRepository} from "../../../model/repository/catalogs/groupsContractor.repository";
+import {GroupContractor} from "../../../model/entity/catalogs/groupContractor.model";
 
 @Component({
   selector: "catalog-groupscontractor",

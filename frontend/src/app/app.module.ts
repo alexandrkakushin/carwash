@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: "carwash/catalogs/groupscontractor", component: GroupsContractorCatalogComponent },
 
   // Цены
-  { path: "carwash/prices", component: PricesComponent},
+  { path: "carwash/prices/:id", component: PricesComponent},
   { path: "carwash/refresh", component: RefreshComponent},
 
   // Авторизация
@@ -87,12 +87,10 @@ export class XhrInterceptor implements HttpInterceptor {
 export class AppModule {
 
   constructor(private authService: AuthService, private router: Router) {
-    console.log("backend url: " + environment.backend);
-
-    //authService.authenticate(credentials = {username: '', password: ''};);
-    // if (!authService.authenticated) {
-    //   this.router.navigateByUrl('/carwash/login');
-    // }
+    //authService.authenticate(credentials = {username: '', password: ''});
+    if (!authService.authenticated) {
+      this.router.navigateByUrl('/carwash/login');
+    }
   }
 }
 

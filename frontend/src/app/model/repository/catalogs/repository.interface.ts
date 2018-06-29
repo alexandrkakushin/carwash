@@ -1,4 +1,4 @@
-import {CatalogCommon} from "../catalog.model";
+import {CatalogCommon} from "../../entity/catalogs/catalog.model";
 
 export interface Repository {
 

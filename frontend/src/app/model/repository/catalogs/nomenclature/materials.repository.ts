@@ -1,11 +1,11 @@
 
 import {Injectable} from "@angular/core";
-import {CommonRepository} from "./common.repository";
-import {StaticDataSource} from "../datasource/static.datasource";
-import {UnitsMeasureRepository} from "./unitsMeasure.repository";
-import {Nomenclature} from "../nomenclature.model";
-import {CatalogCommon} from "../catalog.model";
-import {UnitMeasure} from "../unitMeasure.model";
+import {CommonRepository} from "../common.repository";
+import {StaticDataSource} from "../../../datasource/static.datasource";
+import {UnitsMeasureRepository} from "../unitsMeasure.repository";
+import {Nomenclature} from "../../../entity/catalogs/nomenclature.model";
+import {CatalogCommon} from "../../../entity/catalogs/catalog.model";
+import {UnitMeasure} from "../../../entity/catalogs/unitMeasure.model";
 import {Observable} from "rxjs/Observable";
 import {MechanismsRepository} from "./mechanisms.repository";
 import {ServicesRepository} from "./services.repository";

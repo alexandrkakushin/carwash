@@ -47,4 +47,16 @@ export class Nomenclature extends CatalogCommon {
       element.price
     );
   }
+
+  isService(): boolean {
+    return this.type == "SERVICE";
+  }
+
+  isMaterial(): boolean {
+    return this.type == "MATERIAL";
+  }
+
+  isMechanism(): boolean {
+    return this.type == "MECHANISM";
+  }
 }

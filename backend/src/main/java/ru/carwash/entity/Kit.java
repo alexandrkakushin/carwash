@@ -1,6 +1,5 @@
 package ru.carwash.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
@@ -19,35 +18,26 @@ public class Kit implements Catalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private Long id;
 
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private String name;
 
-    @JsonView({View.Summary.class, View.ShortView.class})
+    @JsonView({View.Element.class, View.List.class})
     private String comment;
 
-    @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "main_id")
+    @JsonView(View.Element.class)
+    private Nomenclature main;
+
+    @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinTable(name = "KIT_NOMENCLATURE",
             joinColumns = @JoinColumn(name = "kit_id"),
             inverseJoinColumns = @JoinColumn(name = "nomenclature_id"))
-    @JsonView({View.Summary.class})
+    @JsonView({View.Element.class})
     private Set<Nomenclature> materials = new HashSet<>();
 
-    @OneToMany(mappedBy = "kit", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Stage> stagesKit = new HashSet<>();
-
-    public Kit() {
-    }
-
-    public Kit(String name) {
-        this();
-        this.name = name;
-    }
-
-    public void addMaterial(Nomenclature material) {
-        this.materials.add(material);
-    }
+    public Kit() {}
 }

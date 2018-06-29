@@ -1,8 +1,8 @@
 
 import {Injectable} from "@angular/core";
 import {CommonRepository} from "./common.repository";
-import {StaticDataSource} from "../datasource/static.datasource";
-import {City} from "../city.model";
+import {StaticDataSource} from "../../datasource/static.datasource";
+import {City} from "../../entity/catalogs/city.model";
 import "rxjs/add/observable/of";
 
 @Injectable()

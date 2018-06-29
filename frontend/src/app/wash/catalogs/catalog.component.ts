@@ -2,19 +2,19 @@
 import {OnInit} from "@angular/core";
 import {Message} from "primeng/api";
 import {CatalogOperation} from "./catalog.interface";
-import {CitiesRepository} from "../../model/repository/cities.repository";
-import {ServicesRepository} from "../../model/repository/services.repository";
-import {MaterialsRepository} from "../../model/repository/materials.repository";
-import {MechanismsRepository} from "../../model/repository/mechanisms.repository";
-import {ContractorsRepository} from "../../model/repository/contractors.repository";
-import {UnitsMeasureRepository} from "../../model/repository/unitsMeasure.repository";
-import {StagesRepository} from "../../model/repository/stages.repository";
-import {SectionsRepository} from "../../model/repository/sections.repository";
-import {BuildingsRepository} from "../../model/repository/buildings.repository";
-import {TargetsRepository} from "../../model/repository/targets.repository";
-import {CatalogCommon} from "../../model/catalog.model";
-import {GroupsContractorRepository} from "../../model/repository/groupsContractor.repository";
-import {KitsRepository} from "../../model/repository/kits.repository";
+import {CitiesRepository} from "../../model/repository/catalogs/cities.repository";
+import {ServicesRepository} from "../../model/repository/catalogs/nomenclature/services.repository";
+import {MaterialsRepository} from "../../model/repository/catalogs/nomenclature/materials.repository";
+import {MechanismsRepository} from "../../model/repository/catalogs/nomenclature/mechanisms.repository";
+import {ContractorsRepository} from "../../model/repository/catalogs/contractors.repository";
+import {UnitsMeasureRepository} from "../../model/repository/catalogs/unitsMeasure.repository";
+import {StagesRepository} from "../../model/repository/catalogs/stages.repository";
+import {SectionsRepository} from "../../model/repository/catalogs/sections.repository";
+import {BuildingsRepository} from "../../model/repository/catalogs/buildings.repository";
+import {TargetsRepository} from "../../model/repository/catalogs/targets.repository";
+import {CatalogCommon} from "../../model/entity/catalogs/catalog.model";
+import {GroupsContractorRepository} from "../../model/repository/catalogs/groupsContractor.repository";
+import {KitsRepository} from "../../model/repository/catalogs/kits.repository";
 
 export abstract class CatalogComponentCommon implements CatalogOperation, OnInit {
 

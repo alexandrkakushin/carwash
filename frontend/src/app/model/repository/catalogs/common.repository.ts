@@ -1,10 +1,10 @@
 
 import {Repository} from "./repository.interface";
-import {StaticDataSource} from "../datasource/static.datasource";
+import {StaticDataSource} from "../../datasource/static.datasource";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
 import "rxjs/add/operator/toPromise";
-import {CatalogCommon} from "../catalog.model";
+import {CatalogCommon} from "../../entity/catalogs/catalog.model";
 import {Message} from "primeng/api";
 import {OnInit} from "@angular/core";
 import {assign} from "rxjs/util/assign";
