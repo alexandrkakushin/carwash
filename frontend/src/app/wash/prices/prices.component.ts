@@ -1,13 +1,13 @@
 
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Contractor} from "../../model/entity/catalogs/contractor.model";
-import {ContractorsRepository} from "../../model/repository/catalogs/contractors.repository";
-import {Message} from "primeng/api";
+import {Message, SelectItem} from "primeng/api";
 import {PricesRepository} from "../../model/repository/prices/prices.repository";
 import {Price} from "../../model/entity/price.model";
 import {Nomenclature} from "../../model/entity/catalogs/nomenclature.model";
 import {NomenclaturesRepository} from "../../model/repository/catalogs/nomenclature/nomenclatures.repository";
+import {City} from "../../model/entity/catalogs/city.model";
+import {CitiesRepository} from "../../model/repository/catalogs/cities.repository";
 
 @Component({
   selector: "prices",
@@ -19,13 +19,22 @@ export class PricesComponent implements OnInit {
 
   private idNomenclature: number;
 
+  cities: SelectItem[];
+
   nomenclature: Nomenclature;
+  nameCatalog: string;
   msgs: Message[] = [];
+
+  selected: Price = new Price();
+  changed: Price = new Price();
+  source: Price = new Price();
+  displayDialog: boolean;
 
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private nomenclaturesRepository: NomenclaturesRepository,
+    private repositoryNomenclatures: NomenclaturesRepository,
+    private repositoryCities: CitiesRepository,
     private repository: PricesRepository) {
 
     this.repository.clear();
@@ -36,34 +45,42 @@ export class PricesComponent implements OnInit {
       });
   }
 
+  columns(): any {
+    return [
+      {field: "id", header: "ID"},
+      {field: "date", header: "Дата"},
+      {field: "city", header: "Город"},
+      {field: "value", header: "Цена"}
+    ];
+  }
+
   ngOnInit(): void {
-    this.nomenclaturesRepository.getItem(this.idNomenclature)
+    this.repositoryCities.getItems()
+      .subscribe(
+        (data) => {
+          this.cities = data.map(
+            (item, index) => ({label: item.name, value: City.assign(item)})
+          );
+        }
+      );
+
+    this.repositoryNomenclatures.getItem(this.idNomenclature)
       .toPromise()
       .then(nomenclature => Nomenclature.assign(nomenclature))
       .then(nomenclature =>
         {
           this.nomenclature = nomenclature;
           this.repository.update(nomenclature);
+
+          if (this.nomenclature.isMaterial()) {
+            this.nameCatalog = "Материалы";
+          } else if (this.nomenclature.isMechanism()) {
+            this.nameCatalog = "Механизмы";
+          } else if (this.nomenclature.isService()) {
+            this.nameCatalog = "Работы";
+          }
         }
       );
-  }
-
-  items(): Price[] {
-    return this.repository.items();
-  }
-
-  nameCatalog(): string {
-    let name = "";
-
-    if (this.nomenclature.isMaterial()) {
-      name = "Материалы";
-    } else if (this.nomenclature.isMechanism()) {
-      name = "Механизмы";
-    } else if (this.nomenclature.isService()) {
-      name = "Работы";
-    }
-
-    return name;
   }
 
   gotoCatalog(): void {
@@ -79,4 +96,88 @@ export class PricesComponent implements OnInit {
 
     this.router.navigateByUrl(url);
   }
+
+  private subscribeMessages(): void {
+    this.repository.getMessages().subscribe(
+      data => {
+        this.msgs = data;
+      }
+    );
+  }
+
+  // add/edit/remove view
+
+  addElement(): void {
+    this.showDialog();
+    this.changed = this.source.clone();
+  }
+
+  copyElement(): void {
+    this.showDialog();
+    this.repository.getItem(this.selected.id)
+      .subscribe(
+        (value) => {
+          this.changed = Price.assign(value);
+          this.changed.id = null;
+        }
+      );
+  }
+
+  editElement(): void {
+    this.showDialog();
+    this.repository.getItem(this.selected.id)
+      .subscribe(
+        (value) => {
+          this.changed = Price.assign(value);
+          console.log(this.changed);
+        }
+      );
+  }
+
+  saveChanges(): void {
+    if (this.changed.id) {
+      this.edit(this.changed);
+    } else {
+      this.add(this.changed);
+    }
+    this.hideDialog();
+  }
+
+  private showDialog(): void {
+    this.displayDialog = true;
+  }
+
+  private hideDialog(): void {
+    this.displayDialog = false;
+    this.changed = this.source.clone();
+  }
+
+  // operation with repository
+
+  update(): void {
+    this.repository.update(this.nomenclature);
+  }
+
+  items(): Price[] {
+    return this.repository.items();
+  };
+
+  add(element: Price): void {
+    element.nomenclature = this.nomenclature;
+
+    this.repository.add(element);
+    this.subscribeMessages();
+  };
+
+  edit(element: Price): void {
+    element.nomenclature = this.nomenclature;
+
+    this.repository.edit(element);
+    this.subscribeMessages();
+  };
+
+  remove(): void {
+    this.repository.remove(this.selected);
+    this.subscribeMessages();
+  };
 }

@@ -3,34 +3,90 @@
 <p-growl [(value)]="msgs"></p-growl>
 
 <div style=" height: 87%;" class="pl-2 pr-2 pt-2">
-  <p-table [value]="items()">
+  <p-table #dt
+    [columns]="columns()"
+    [value]="items()"
+    selectionMode="single"
+    dataKey="id"
+    [(selection)]="selected" [scrollable]="true" scrollHeight="100%">
 
     <ng-template pTemplate="caption">
       <div class="row" style="margin:0 0 0 0">
-        <p>Цены / {{ nameCatalog() }} / {{ nomenclature }}</p>
+        <p>Цены / {{ nameCatalog }} / {{ nomenclature }} </p>
       </div>
 
       <div class="row">
         <div class="col-sm-8" style="text-align: left" >
           <button type="button" pTooltip="Перейти в справочник" pButton icon="fa-arrow-left " (click)="gotoCatalog()"></button>
+          <button type="button" pTooltip="Создать новый" pButton icon="fa-plus" (click)="addElement()"></button>
+          <button type="button" pTooltip="Скопировать" pButton icon="fa-copy" (click)="copyElement()" [disabled]="selected.id == undefined"></button>
+          <button type="button" pTooltip="Изменить" pButton icon="fa-edit" (click)="editElement()" [disabled]="selected.id == undefined"></button>
+          <button type="button" pTooltip="Удалить" pButton icon="fa-remove" (click)="remove()" [disabled]="selected.id == undefined"></button>
+          <button type="button" pTooltip="Обновить" pButton icon="fa-refresh" (click)="update()"></button>
+          <button type="button" pTooltip="Экспорт в CSV" pButton icon="fa-file-o" (click)="dt.exportCSV()"></button>
         </div>
       </div>
     </ng-template>
 
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" let-columns>
       <tr>
-        <th>Дата</th>
-        <th>Город</th>
-        <th>Цена</th>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-price>
-      <tr>
-        <td>{{price.date}}</td>
-        <td>{{price.city}}</td>
-        <td>{{price.value}}</td>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+
+
+<p-dialog header="Цена: {{ nomenclature }}" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px" *ngIf="changed != null">
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4">
+        <label for="date">Дата</label>
+      </div>
+      <div class="ui-grid-col-8">
+        <p-inputMask id="date" mask="9999-99-99" [(ngModel)]="changed.date" placeholder="9999-99-99" slotChar="yyyy-mm-dd"></p-inputMask>
+      </div>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4">
+        <label for="city">Город</label>
+      </div>
+      <div class="ui-grid-col-8">
+        <p-dropdown id="city" [dataKey]="id" [options]="cities" [(ngModel)]="changed.city" [autoDisplayFirst]="false" [style]="{'width':'350px'}"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4">
+        <label for="price">Цена</label>
+      </div>
+      <div class="ui-grid-col-8">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">$</span>
+          <input pKeyFilter="num" pInputText id="price" [(ngModel)]="changed.value"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa-close" (click)="hideDialog()" label="Отмена"></button>
+      <button type="button" pButton icon="fa-check" (click)="saveChanges()" label="Сохранить"></button>
+    </div>
+  </p-footer>
+</p-dialog>

@@ -34,28 +34,8 @@ export class CommonRepository implements Repository {
       );
   }
 
-  getDataSource(): StaticDataSource {
-    return this.dataSource;
-  }
-
   getMessages(): Observable<Message[]> {
     return Observable.from([this.msgs]);
-  }
-
-  findById(id: number): CatalogCommon {
-    let element = this._items.find(line => line.id == id);
-    if (!element) {
-      console.log('get: ' + id + ' ' + this.nameRepository);
-      this.dataSource.item(id, this.nameRepository)
-        .toPromise()
-        .then(
-          (value => {
-            element = value;
-          })
-        )
-    }
-
-    return element;
   }
 
   assign(element: any): CatalogCommon {

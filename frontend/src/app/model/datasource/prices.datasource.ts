@@ -14,37 +14,45 @@ export class PricesDatasource {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
-
   items(nomenclature: Nomenclature): Observable<Price[]> {
     return this.httpClient
       .get<Price[]>(
-        this.apiUrl + '/' + nomenclature.id,
-        { headers: this.authService.getSystemAuthorizationHeader() }
+        this.apiUrl + '/nomenclature/' + nomenclature.id,
+        { headers: this.authService.getAuthorizationHeader() }
       );
   }
 
   item(id: number): Observable<Price> {
-    return null;
+    return this.httpClient
+      .get<Price> (
+        this.apiUrl + '/' + id,
+        { headers: this.authService.getAuthorizationHeader() }
+      )
   }
-
-  itemLast(nomenclature: Nomenclature): Observable<Price> {
-    return null;
-  }
-
-  itemByDate(nomenclature: Nomenclature, date: Date): Observable<Price> {
-    return null;
-  }
-
 
   deletePrice(price: Price): Observable<any> {
-    return null;
+    return this.httpClient
+      .delete(
+        this.apiUrl + '/' + price.id,
+        {headers: this.authService.getAuthorizationHeader() }
+      );
   }
 
   addPrice(price: Price): Observable<any> {
-    return null;
+    let headers = this.authService.getAuthorizationHeader()
+      .append("Content-Type", "application/json");
+
+    return this.httpClient
+      .post(
+        this.apiUrl, price, {headers: headers});
   }
 
   editPrice(price: Price): Observable<any> {
-    return null;
+    let headers = this.authService.getAuthorizationHeader()
+      .append("Content-Type", "application/json");
+
+    return this.httpClient
+      .put(
+        this.apiUrl, price, {headers: headers});
   }
 }
