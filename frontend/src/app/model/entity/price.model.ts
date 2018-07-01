@@ -1,5 +1,6 @@
 
 import {Nomenclature} from "./catalogs/nomenclature.model";
+import {City} from "./catalogs/city.model";
 
 export class Price {
 
@@ -7,7 +8,8 @@ export class Price {
     public id?: number,
     public date?: Date,
     public value?: number,
-    public nomenclature?: Nomenclature
+    public nomenclature?: Nomenclature,
+    public city?: City
   ) {}
 
   clone(): this {
@@ -15,7 +17,8 @@ export class Price {
       this.id,
       this.date,
       this.value,
-      this.nomenclature) as this;
+      this.nomenclature,
+      this.city) as this;
   }
 
   toString() {
@@ -27,7 +30,8 @@ export class Price {
       element.id,
       element.date,
       element.value,
-      element.nomenclature ? Nomenclature.assign(element.nomenclature) : null
+      element.nomenclature ? Nomenclature.assign(element.nomenclature) : null,
+      element.city ? City.assign(element.city) : null
     );
   }
 }

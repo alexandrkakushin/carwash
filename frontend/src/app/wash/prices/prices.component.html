@@ -19,16 +19,16 @@
 
     <ng-template pTemplate="header">
       <tr>
-        <th>Код</th>
         <th>Дата</th>
+        <th>Город</th>
         <th>Цена</th>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-price>
       <tr>
-        <td>{{price.id}}</td>
         <td>{{price.date}}</td>
+        <td>{{price.city}}</td>
         <td>{{price.value}}</td>
       </tr>
     </ng-template>

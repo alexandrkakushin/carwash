@@ -23,6 +23,10 @@ public class Price {
     @JsonIgnore
     private Nomenclature nomenclature;
 
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
     private LocalDate date;
     private float value;
 
