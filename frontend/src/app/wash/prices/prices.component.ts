@@ -143,11 +143,11 @@ export class PricesComponent implements OnInit {
     this.hideDialog();
   }
 
-  private showDialog(): void {
+  showDialog(): void {
     this.displayDialog = true;
   }
 
-  private hideDialog(): void {
+  hideDialog(): void {
     this.displayDialog = false;
     this.changed = this.source.clone();
   }
