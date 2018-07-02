@@ -10,7 +10,6 @@ import java.util.Set;
 /**
  * @author a.kakushin
  */
-
 @Entity(name = "kit")
 @Table(name = "kits")
 @Data
