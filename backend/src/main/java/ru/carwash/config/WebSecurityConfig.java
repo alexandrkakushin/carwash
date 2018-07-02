@@ -17,7 +17,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 /**
  * @author a.kakushin
  */
-
 @Configuration
 @Order(SecurityProperties.BASIC_AUTH_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
