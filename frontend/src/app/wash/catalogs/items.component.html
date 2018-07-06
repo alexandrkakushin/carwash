@@ -8,6 +8,7 @@
     [value]="items()"
     selectionMode="single"
     dataKey="id"
+    [lazy]="true" (onLazyLoad)="loadItemsLazy($event)" [loading]="loading"
     [(selection)]="selected" [scrollable]="true" scrollHeight="100%">
 
     <ng-template pTemplate="caption">

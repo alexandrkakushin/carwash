@@ -1,6 +1,6 @@
 
 import {OnInit} from "@angular/core";
-import {Message} from "primeng/api";
+import {LazyLoadEvent, Message} from "primeng/api";
 import {CatalogOperation} from "./catalog.interface";
 import {CitiesRepository} from "../../model/repository/catalogs/cities.repository";
 import {ServicesRepository} from "../../model/repository/catalogs/nomenclature/services.repository";
@@ -28,15 +28,16 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
   msgs: Message[] = [];
 
   displayDialog: boolean;
+  loading: boolean;
 
   constructor(private repository, name: string) {
     this.setName(name);
-    this.repository.update();
   }
 
   ngOnInit(): void {
     this.initComponent();
     this.cols = this.columns();
+    this.loading = true;
   }
 
   setName(name: string) {
@@ -48,6 +49,16 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
   }
 
   initComponent(): void {}
+
+  loadItemsLazy(event: LazyLoadEvent) {
+    this.loading = true;
+    this.repository.update()
+      .subscribe(
+        data => {
+          this.loading = false;
+        }
+      );
+  }
 
   setPrototype(source: CatalogCommon) {
     this.selected = source.clone();

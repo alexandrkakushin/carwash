@@ -8,6 +8,7 @@ import {CatalogCommon} from "../../entity/catalogs/catalog.model";
 import {Message} from "primeng/api";
 import {OnInit} from "@angular/core";
 import {assign} from "rxjs/util/assign";
+import {Subscription} from "rxjs/Subscription";
 
 export class CommonRepository implements Repository {
 
@@ -20,8 +21,9 @@ export class CommonRepository implements Repository {
     this.nameRepository = repository;
   }
 
-  update() {
-    this.getItems()
+  update(): Observable<CatalogCommon[]> {
+    let getItems: Observable<CatalogCommon[]> = this.getItems();
+    getItems
       .subscribe(
         data => {
           this.clear();
@@ -32,6 +34,7 @@ export class CommonRepository implements Repository {
           );
         }
       );
+    return getItems;
   }
 
   getMessages(): Observable<Message[]> {
