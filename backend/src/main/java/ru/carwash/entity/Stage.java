@@ -24,6 +24,9 @@ public class Stage implements Catalog {
     @JsonView({View.Element.class, View.List.class})
     private String comment;
 
+    @JsonView({View.Element.class, View.List.class})
+    private Float volume;
+
     @ManyToOne
     @JoinColumn(name = "kit_id")
     @JsonView({View.Element.class, View.List.class})

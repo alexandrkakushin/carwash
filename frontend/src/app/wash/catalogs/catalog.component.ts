@@ -54,7 +54,11 @@ export abstract class CatalogComponentCommon implements CatalogOperation, OnInit
     this.loading = true;
     this.repository.update()
       .subscribe(
-        data => {
+        (data) => {
+          this.loading = false;
+        },
+        (error) => {
+          this.msgs.push({severity: 'error', summary: "Ошибка", detail: "Внутренняя ошибка сервера"});
           this.loading = false;
         }
       );

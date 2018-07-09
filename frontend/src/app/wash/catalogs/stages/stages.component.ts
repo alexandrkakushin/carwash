@@ -67,6 +67,7 @@ export class StagesCatalogComponent extends CatalogComponentCommon {
     return [
       {field: "id", header: "ID"},
       {field: "name", header: "Наименование"},
+      {field: "volume", header: "Объем"},
       {field: "kit", header: "Комплект"},
       {field: "service", header: "Работа"},
       {field: "mechanism", header: "Механизм"},

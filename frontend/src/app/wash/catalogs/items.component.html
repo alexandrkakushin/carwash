@@ -245,6 +245,17 @@
 
     <div class="ui-grid-row">
       <div class="ui-grid-col-4">
+        <label for="volume_stage">Объем</label>
+      </div>
+      <div class="ui-grid-col-8">
+        <div class="ui-inputgroup">
+          <input pKeyFilter="num" pInputText id="volume_stage" [(ngModel)]="changed.volume"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4">
         <label for="stage_kit">Комплект</label>
       </div>
       <div class="ui-grid-col-8">

@@ -9,6 +9,7 @@ export class Stage extends CatalogCommon {
     public id?: number,
     public name?: string,
     public comment?: string,
+    public volume?: number,
     public kit?: Kit,
     public service?: Nomenclature,
     public mechanism?: Nomenclature
@@ -21,6 +22,7 @@ export class Stage extends CatalogCommon {
       this.id,
       this.name,
       this.comment,
+      this.volume,
       this.kit ? this.kit.clone() : null,
       this.service ? this.service.clone() : null,
       this.mechanism ? this.mechanism.clone() : null) as this;
@@ -35,6 +37,7 @@ export class Stage extends CatalogCommon {
       element.id,
       element.name,
       element.comment,
+      element.volume,
       element.kit ? Kit.assign(element.kit, true) : null,
       element.service ? Nomenclature.assign(element.service) : null,
       element.mechanism ? Nomenclature.assign(element.mechanism) : null);

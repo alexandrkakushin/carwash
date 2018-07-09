@@ -33,7 +33,7 @@ export class Nomenclature extends CatalogCommon {
   }
 
   toString() {
-    return '(' + this.article + ') ' + this.name;
+    return this.name;
   }
 
   static assign(element: any): Nomenclature {
