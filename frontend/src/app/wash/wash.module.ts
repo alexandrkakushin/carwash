@@ -44,6 +44,9 @@ import {AccordionModule} from 'primeng/accordion';
 import {PanelModule} from 'primeng/panel';
 import {KitsCatalogComponent} from "./catalogs/kits/kits.component";
 import {AdminComponent} from "./admin/admin.component";
+import {MenubarModule} from 'primeng/menubar';
+import {MenuItem} from 'primeng/api';
+import {MenuModule} from 'primeng/menu';
 
 @NgModule({
   imports: [
@@ -68,7 +71,9 @@ import {AdminComponent} from "./admin/admin.component";
     TooltipModule,
     FieldsetModule,
     AccordionModule,
-    PanelModule
+    PanelModule,
+    MenubarModule,
+    MenuModule
   ],
   declarations: [
       WashComponent,

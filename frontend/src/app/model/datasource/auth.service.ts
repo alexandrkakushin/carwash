@@ -1,7 +1,8 @@
+
+import {from as observableFrom, Observable} from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Message} from "primeng/api";
-import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
 import {environment} from "../../../environments/environment";
 
@@ -47,6 +48,6 @@ export class AuthService {
   }
 
   getMessages(): Observable<Message[]> {
-    return Observable.from([this.msgs]);
+    return observableFrom([this.msgs]);
   }
 }

@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {Price} from "../entity/price.model";
 import {Nomenclature} from "../entity/catalogs/nomenclature.model";
 

@@ -2,41 +2,41 @@
 
 <p-growl [(value)]="msgs"></p-growl>
 
-<div style=" height: 87%;" class="pl-2 pr-2 pt-2">
+<div style="padding-top: 10px">
   <p-table #dt
-    [columns]="cols"
-    [value]="items()"
-    selectionMode="single"
-    dataKey="id"
-    [lazy]="true" (onLazyLoad)="loadItemsLazy($event)" [loading]="loading"
-    [(selection)]="selected" [scrollable]="true" scrollHeight="100%">
+           [columns]="cols"
+           [value]="items()"
+           selectionMode="single"
+           dataKey="id"
+           [lazy]="true" (onLazyLoad)="loadItemsLazy($event)" [loading]="loading"
+           [(selection)]="selected" [scrollable]="true" scrollHeight="100%">
 
     <ng-template pTemplate="caption">
-      <div class="row" style="margin:0 0 0 0">
-          <p>{{ name }} / {{ selected.name }}</p>
-      </div>
+      <div class="p-grid">
+        <div class="p-col-3" style="padding-top: 5px; padding-bottom: 0; text-align: left">
+          <p-button pTooltip="Создать новый" icon="fa fa-plus" style="padding-right: 3px" (click)="addElement()"></p-button>
+          <p-button pTooltip="Скопировать" icon="fa fa-copy" style="padding-right: 3px" (click)="copyElement()" [disabled]="selected.id == undefined"></p-button>
+          <p-button pTooltip="Изменить" icon="fa fa-edit" style="padding-right: 3px" (click)="editElement()" [disabled]="selected.id == undefined"></p-button>
+          <p-button pTooltip="Удалить" icon="fa fa-remove" style="padding-right: 3px" (click)="remove()" [disabled]="selected.id == undefined"></p-button>
+          <p-button pTooltip="Обновить" icon="fa fa-refresh" style="padding-right: 3px" (click)="update()"></p-button>
+          <p-button pTooltip="Экспорт в CSV" icon="fa fa-file-o" style="padding-right: 3px" (click)="dt.exportCSV()"></p-button>
 
-      <div class="row">
-        <div class="col-sm-8" style="text-align: left" >
-          <button type="button" pTooltip="Создать новый" pButton icon="fa-plus" (click)="addElement()"></button>
-          <button type="button" pTooltip="Скопировать" pButton icon="fa-copy" (click)="copyElement()" [disabled]="selected.id == undefined"></button>
-          <button type="button" pTooltip="Изменить" pButton icon="fa-edit" (click)="editElement()" [disabled]="selected.id == undefined"></button>
-          <button type="button" pTooltip="Удалить" pButton icon="fa-remove" (click)="remove()" [disabled]="selected.id == undefined"></button>
-          <button type="button" pTooltip="Обновить" pButton icon="fa-refresh" (click)="update()"></button>
-          <button type="button" pTooltip="Экспорт в CSV" pButton icon="fa-file-o" (click)="dt.exportCSV()"></button>
+          <p-button pTooltip="Цены" icon="fa fa-rub" style="padding-right: 3px"
+                    class="ui-button-success"
+                    [disabled]="selected.id == undefined" *ngIf="isNomenclature()"
+                    [routerLink]="['/carwash/prices', selected.id]">
+          </p-button>
 
-          <button type="button" pTooltip="Цены" pButton icon="fa-rub"
-                  class="ui-button-success"
-                  [disabled]="selected.id == undefined" *ngIf="isNomenclature()"
-                  [routerLink]="['/carwash/prices', selected.id]">
-          </button>
-
-          <button type="button" pTooltip="Перейти к расчетам" pButton icon="fa-cube" class="ui-button-success" [disabled]="selected.id == undefined" *ngIf="isTarget()" [routerLink]="['/carwash/processing/estimate', selected.id]"></button>
+          <p-button pTooltip="Перейти к расчетам" icon="fa fa-cube" class="ui-button-success" [disabled]="selected.id == undefined" *ngIf="isTarget()" [routerLink]="['/carwash/processing/estimate', selected.id]"></p-button>
         </div>
 
-        <div class="col-sm-4">
+        <div class="p-col-6">
+          <p style="padding-top: 0; margin-top:5px; margin-bottom:0">{{ name }} / {{ selected.name }}</p>
+        </div>
+
+        <div class="p-col-3" style="padding-top: 5px; padding-bottom: 0; ">
           <div style="text-align: right">
-            <i class="fa fa-search"></i>
+            <i class="fa fa-search" style="padding-right: 5px"></i>
             <input type="text" pInputText size="20" placeholder="Поиск" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
           </div>
         </div>
@@ -444,13 +444,12 @@
         <textarea id="comment_kit" pInputTextarea [(ngModel)]="changed.comment"></textarea>
       </div>
     </div>
-
   </div>
 
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button type="button" pButton icon="fa-close" (click)="hideDialog()" label="Отмена"></button>
-      <button type="button" pButton icon="fa-check" (click)="saveChanges()" label="Сохранить"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="saveChanges()" label="Сохранить"></button>
+      <button type="button" pButton icon="fa fa-close" (click)="hideDialog()" label="Отмена"></button>
     </div>
   </p-footer>
 </p-dialog>

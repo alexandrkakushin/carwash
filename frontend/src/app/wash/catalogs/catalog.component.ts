@@ -1,6 +1,6 @@
 
 import {OnInit} from "@angular/core";
-import {LazyLoadEvent, Message} from "primeng/api";
+import {LazyLoadEvent, MenuItem, Message} from "primeng/api";
 import {CatalogOperation} from "./catalog.interface";
 import {CitiesRepository} from "../../model/repository/catalogs/cities.repository";
 import {ServicesRepository} from "../../model/repository/catalogs/nomenclature/services.repository";

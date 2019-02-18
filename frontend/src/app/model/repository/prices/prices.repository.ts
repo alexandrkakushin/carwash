@@ -1,7 +1,8 @@
 
+import {from as observableFrom, Observable} from 'rxjs';
+
 import {Injectable} from "@angular/core";
 import {PricesDatasource} from "../../datasource/prices.datasource";
-import {Observable} from "rxjs/Observable";
 import {Price} from "../../entity/price.model";
 import {Nomenclature} from "../../entity/catalogs/nomenclature.model";
 import {Message} from "primeng/api";
@@ -15,7 +16,7 @@ export class PricesRepository {
   constructor(private dataSource: PricesDatasource) {}
 
   getMessages(): Observable<Message[]> {
-    return Observable.from([this.msgs]);
+    return observableFrom([this.msgs]);
   }
 
   // CRUD

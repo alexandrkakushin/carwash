@@ -1,7 +1,8 @@
 
+import {from as observableFrom, Observable} from 'rxjs';
+
 import {Injectable} from "@angular/core";
 import {Nomenclature} from "../entity/catalogs/nomenclature.model";
-import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
 import {City} from "../entity/catalogs/city.model";
 import {Contractor} from "../entity/catalogs/contractor.model";
@@ -127,19 +128,19 @@ export class StaticDataSource {
   items(repository: string): Observable<any[]> {
 
     if (repository == 'UnitsMeasureRepository') {
-      return Observable.from([this.unitsMeasure]);
+      return observableFrom([this.unitsMeasure]);
 
     } else if (repository == 'CitiesRepository') {
-      return Observable.from([this.cities]);
+      return observableFrom([this.cities]);
 
     } else if (repository == 'MaterialsRepository') {
-      return Observable.from([this.materials]);
+      return observableFrom([this.materials]);
 
     } else if (repository == 'ServicesRepository') {
-      return Observable.from([this.services]);
+      return observableFrom([this.services]);
 
     } else if (repository == 'MechanismsRepository') {
-      return Observable.from([this.mechanisms]);
+      return observableFrom([this.mechanisms]);
 
     }
   }

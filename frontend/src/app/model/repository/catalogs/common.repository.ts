@@ -1,14 +1,12 @@
 
+import {from as observableFrom, Observable, Subscription} from 'rxjs';
+
 import {Repository} from "./repository.interface";
 import {StaticDataSource} from "../../datasource/static.datasource";
-import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
 import "rxjs/add/operator/toPromise";
 import {CatalogCommon} from "../../entity/catalogs/catalog.model";
 import {Message} from "primeng/api";
-import {OnInit} from "@angular/core";
-import {assign} from "rxjs/util/assign";
-import {Subscription} from "rxjs/Subscription";
 
 export class CommonRepository implements Repository {
 
@@ -38,7 +36,7 @@ export class CommonRepository implements Repository {
   }
 
   getMessages(): Observable<Message[]> {
-    return Observable.from([this.msgs]);
+    return observableFrom([this.msgs]);
   }
 
   assign(element: any): CatalogCommon {

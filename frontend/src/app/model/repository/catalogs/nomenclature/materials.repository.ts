@@ -6,7 +6,7 @@ import {UnitsMeasureRepository} from "../unitsMeasure.repository";
 import {Nomenclature} from "../../../entity/catalogs/nomenclature.model";
 import {CatalogCommon} from "../../../entity/catalogs/catalog.model";
 import {UnitMeasure} from "../../../entity/catalogs/unitMeasure.model";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {MechanismsRepository} from "./mechanisms.repository";
 import {ServicesRepository} from "./services.repository";
 
